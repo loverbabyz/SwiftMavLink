@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		456E6C4C1AC9955200D83D52 /* SerialMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456E6C4B1AC9955200D83D52 /* SerialMain.swift */; };
+		45E1EFE21AC9B93500929F06 /* MavLink+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */; };
+		45E1EFE31AC9B93500929F06 /* MavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* MavLink.swift */; };
+		45E1EFE41AC9B93500929F06 /* CRC16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDB1AC9B93500929F06 /* CRC16.swift */; };
+		45E1EFE51AC9B93500929F06 /* DataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDC1AC9B93500929F06 /* DataScanner.swift */; };
+		45E1EFE61AC9B93500929F06 /* Scratch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDD1AC9B93500929F06 /* Scratch.swift */; };
+		45E1EFE71AC9B93500929F06 /* SerialPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDE1AC9B93500929F06 /* SerialPort.swift */; };
+		45E1EFE81AC9B93500929F06 /* SwiftIOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDF1AC9B93500929F06 /* SwiftIOKit.swift */; };
+		45E1EFE91AC9B93500929F06 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFE11AC9B93500929F06 /* RegularExpression.swift */; };
+		45E907EC1AC85F6F00541AF9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E907EB1AC85F6F00541AF9 /* main.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		45E907E61AC85F6F00541AF9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		456E6C4B1AC9955200D83D52 /* SerialMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialMain.swift; sourceTree = "<group>"; };
+		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MavLink+XML.swift"; sourceTree = "<group>"; };
+		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MavLink.swift; sourceTree = "<group>"; };
+		45E1EFDB1AC9B93500929F06 /* CRC16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRC16.swift; sourceTree = "<group>"; };
+		45E1EFDC1AC9B93500929F06 /* DataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataScanner.swift; sourceTree = "<group>"; };
+		45E1EFDD1AC9B93500929F06 /* Scratch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scratch.swift; sourceTree = "<group>"; };
+		45E1EFDE1AC9B93500929F06 /* SerialPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialPort.swift; sourceTree = "<group>"; };
+		45E1EFDF1AC9B93500929F06 /* SwiftIOKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIOKit.swift; sourceTree = "<group>"; };
+		45E1EFE11AC9B93500929F06 /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
+		45E907E81AC85F6F00541AF9 /* SwiftMavlink */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftMavlink; sourceTree = BUILT_PRODUCTS_DIR; };
+		45E907EB1AC85F6F00541AF9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		45E907E51AC85F6F00541AF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		45E1EFD71AC9B93500929F06 /* Mavlink */ = {
+			isa = PBXGroup;
+			children = (
+				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
+				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
+			);
+			path = Mavlink;
+			sourceTree = "<group>";
+		};
+		45E1EFDA1AC9B93500929F06 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				45E1EFDB1AC9B93500929F06 /* CRC16.swift */,
+				45E1EFDC1AC9B93500929F06 /* DataScanner.swift */,
+				45E1EFDD1AC9B93500929F06 /* Scratch.swift */,
+				45E1EFDE1AC9B93500929F06 /* SerialPort.swift */,
+				45E1EFDF1AC9B93500929F06 /* SwiftIOKit.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		45E1EFE01AC9B93500929F06 /* SwiftUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				45E1EFE11AC9B93500929F06 /* RegularExpression.swift */,
+			);
+			path = SwiftUtilities;
+			sourceTree = "<group>";
+		};
+		45E907DF1AC85F6F00541AF9 = {
+			isa = PBXGroup;
+			children = (
+				45E907EA1AC85F6F00541AF9 /* MavlinkTest */,
+				45E907E91AC85F6F00541AF9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		45E907E91AC85F6F00541AF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				45E907E81AC85F6F00541AF9 /* SwiftMavlink */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45E907EA1AC85F6F00541AF9 /* MavlinkTest */ = {
+			isa = PBXGroup;
+			children = (
+				45E907EB1AC85F6F00541AF9 /* main.swift */,
+				456E6C4B1AC9955200D83D52 /* SerialMain.swift */,
+				45E1EFD71AC9B93500929F06 /* Mavlink */,
+				45E1EFDA1AC9B93500929F06 /* Support */,
+				45E1EFE01AC9B93500929F06 /* SwiftUtilities */,
+			);
+			path = MavlinkTest;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		45E907E71AC85F6F00541AF9 /* SwiftMavlink */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45E907EF1AC85F6F00541AF9 /* Build configuration list for PBXNativeTarget "SwiftMavlink" */;
+			buildPhases = (
+				45E907E41AC85F6F00541AF9 /* Sources */,
+				45E907E51AC85F6F00541AF9 /* Frameworks */,
+				45E907E61AC85F6F00541AF9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftMavlink;
+			productName = MavlinkTest;
+			productReference = 45E907E81AC85F6F00541AF9 /* SwiftMavlink */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		45E907E01AC85F6F00541AF9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = schwa.io;
+				TargetAttributes = {
+					45E907E71AC85F6F00541AF9 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = 45E907E31AC85F6F00541AF9 /* Build configuration list for PBXProject "SwiftMavlink" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 45E907DF1AC85F6F00541AF9;
+			productRefGroup = 45E907E91AC85F6F00541AF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				45E907E71AC85F6F00541AF9 /* SwiftMavlink */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		45E907E41AC85F6F00541AF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45E1EFE71AC9B93500929F06 /* SerialPort.swift in Sources */,
+				45E1EFE91AC9B93500929F06 /* RegularExpression.swift in Sources */,
+				456E6C4C1AC9955200D83D52 /* SerialMain.swift in Sources */,
+				45E1EFE31AC9B93500929F06 /* MavLink.swift in Sources */,
+				45E1EFE41AC9B93500929F06 /* CRC16.swift in Sources */,
+				45E1EFE51AC9B93500929F06 /* DataScanner.swift in Sources */,
+				45E1EFE81AC9B93500929F06 /* SwiftIOKit.swift in Sources */,
+				45E1EFE61AC9B93500929F06 /* Scratch.swift in Sources */,
+				45E1EFE21AC9B93500929F06 /* MavLink+XML.swift in Sources */,
+				45E907EC1AC85F6F00541AF9 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		45E907ED1AC85F6F00541AF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		45E907EE1AC85F6F00541AF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		45E907F01AC85F6F00541AF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = SwiftMavlink;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		45E907F11AC85F6F00541AF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = SwiftMavlink;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		45E907E31AC85F6F00541AF9 /* Build configuration list for PBXProject "SwiftMavlink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45E907ED1AC85F6F00541AF9 /* Debug */,
+				45E907EE1AC85F6F00541AF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45E907EF1AC85F6F00541AF9 /* Build configuration list for PBXNativeTarget "SwiftMavlink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45E907F01AC85F6F00541AF9 /* Debug */,
+				45E907F11AC85F6F00541AF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 45E907E01AC85F6F00541AF9 /* Project object */;
+}

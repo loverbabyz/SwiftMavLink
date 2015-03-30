@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ufwb version="1.9">
+    <grammar name="HEX grammar" start="id:6" author="Jonathan Wight" fileextension="hex">
+        <description>Grammar for HEX files</description>
+        <structure name="Mavlink File" id="6" encoding="ISO_8859-1:1987" endian="little" signed="no">
+            <structure name="Packet" id="8">
+                <binary name="Start" mustmatch="yes" id="9" length="1">
+                    <fixedvalues>
+                        <fixedvalue name="FE" value="FE"/>
+                    </fixedvalues>
+                </binary>
+                <number name="PayloadLength" id="10" type="integer" length="1"/>
+                <number name="Sequence" id="11" type="integer" length="1"/>
+                <number name="System-ID" id="12" type="integer" length="1"/>
+                <number name="Component-ID" id="13" type="integer" length="1"/>
+                <number name="Message-ID" id="14" type="integer" length="1"/>
+                <binary name="Payload" id="15" fillcolor="0096FF" length="PayloadLength"/>
+                <number name="CRC" id="16" type="integer" length="2"/>
+            </structure>
+        </structure>
+    </grammar>
+</ufwb>
