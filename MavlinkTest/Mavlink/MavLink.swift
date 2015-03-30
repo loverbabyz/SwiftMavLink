@@ -8,19 +8,6 @@
 
 import Foundation
 
-//# # some base types from mavlink_types.h
-//# MAVLINK_TYPE_CHAR     = 0
-//# MAVLINK_TYPE_UINT8_T  = 1
-//# MAVLINK_TYPE_INT8_T   = 2
-//# MAVLINK_TYPE_UINT16_T = 3
-//# MAVLINK_TYPE_INT16_T  = 4
-//# MAVLINK_TYPE_UINT32_T = 5
-//# MAVLINK_TYPE_INT32_T  = 6
-//# MAVLINK_TYPE_UINT64_T = 7
-//# MAVLINK_TYPE_INT64_T  = 8
-//# MAVLINK_TYPE_FLOAT    = 9
-//# MAVLINK_TYPE_DOUBLE   = 10
-
 struct MessageDefinition {
     let id:Int
     let name:String
@@ -122,10 +109,32 @@ extension FieldDefinition: Printable {
 
 // MARK: -
 
+//# # some base types from mavlink_types.h
+//# MAVLINK_TYPE_CHAR     = 0
+//# MAVLINK_TYPE_UINT8_T  = 1
+//# MAVLINK_TYPE_INT8_T   = 2
+//# MAVLINK_TYPE_UINT16_T = 3
+//# MAVLINK_TYPE_INT16_T  = 4
+//# MAVLINK_TYPE_UINT32_T = 5
+//# MAVLINK_TYPE_INT32_T  = 6
+//# MAVLINK_TYPE_UINT64_T = 7
+//# MAVLINK_TYPE_INT64_T  = 8
+//# MAVLINK_TYPE_FLOAT    = 9
+//# MAVLINK_TYPE_DOUBLE   = 10
+
+
 enum FieldType {
     case char
     case uint8_t
+    case int8_t
+    case uint16_t
+    case int16_t
     case uint32_t
+    case int32_t
+    case uint64_t
+    case int64_t
+    case float
+    case double
 
     init?(string:String) {
         switch string {
@@ -133,8 +142,24 @@ enum FieldType {
                 self = .char
             case "uint8_t", "uint8_t_mavlink_version":
                 self = .uint8_t
+            case "int8_t":
+                self = .int8_t
+            case "uint16_t":
+                self = .uint16_t
+            case "int16_t":
+                self = .int16_t
             case "uint32_t":
                 self = .uint32_t
+            case "int32_t":
+                self = .int32_t
+            case "uint64_t":
+                self = .uint64_t
+            case "int64_t":
+                self = .int64_t
+            case "float":
+                self = .float
+            case "double":
+                self = .double
             default:
                 println("Unknown field type: \(string)")
                 self = .uint8_t
@@ -149,8 +174,24 @@ enum FieldType {
                     return "char"
                 case .uint8_t:
                     return "uint8_t"
+                case .int8_t:
+                    return "int8_t"
+                case .uint16_t:
+                    return "uint16_t"
+                case .int16_t:
+                    return "int16_t"
                 case .uint32_t:
                     return "uint32_t"
+                case .int32_t:
+                    return "int32_t"
+                case .uint64_t:
+                    return "uint64_t"
+                case .int64_t:
+                    return "int64_t"
+                case .float:
+                    return "float"
+                case .double:
+                    return "double"
             }
         }
     }
@@ -158,9 +199,17 @@ enum FieldType {
     var size:Int {
         get {
             switch self {
-                case .char, .uint8_t:
+                case .char, .uint8_t, .int8_t:
                     return 1
-                case .uint32_t:
+                case .uint16_t, .int16_t:
+                    return 2
+                case .uint32_t, .int32_t:
+                    return 4
+                case .uint64_t, .int64_t:
+                    return 8
+                case .float:
+                    return 4
+                case .double:
                     return 4
             }
         }
@@ -179,9 +228,33 @@ extension DataScanner {
             case .uint8_t:
                 assert(count == nil)
                 return scan() as UInt8?
+            case .int8_t:
+                assert(count == nil)
+                return scan() as Int8?
+            case .uint16_t:
+                assert(count == nil)
+                return scan() as UInt16?
+            case .int16_t:
+                assert(count == nil)
+                return scan() as Int16?
             case .uint32_t:
                 assert(count == nil)
                 return scan() as UInt32?
+            case .int32_t:
+                assert(count == nil)
+                return scan() as Int32?
+            case .uint64_t:
+                assert(count == nil)
+                return scan() as UInt64?
+            case .int64_t:
+                assert(count == nil)
+                return scan() as Int64?
+            case .float:
+                assert(count == nil)
+                return scan() as Float?
+            case .double:
+                assert(count == nil)
+                return scan() as Double?
         }
     }
 }

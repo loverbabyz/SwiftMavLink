@@ -43,6 +43,7 @@
 		45E1EFE11AC9B93500929F06 /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
 		45E907E81AC85F6F00541AF9 /* SwiftMavlink */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftMavlink; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E907EB1AC85F6F00541AF9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		45F181241AC9FF5F00815F08 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +89,7 @@
 		45E907DF1AC85F6F00541AF9 = {
 			isa = PBXGroup;
 			children = (
+				45F181241AC9FF5F00815F08 /* README.markdown */,
 				45E907EA1AC85F6F00541AF9 /* MavlinkTest */,
 				45E907E91AC85F6F00541AF9 /* Products */,
 			);

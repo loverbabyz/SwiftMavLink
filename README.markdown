@@ -30,8 +30,7 @@ STATUSTEXT: [text: OOPS, severity: 1]
 ## Status
 
 * Supports reading MAVLink messages.
-  * Currently only supports uint8, uint32 and arrays of chars (strings).
-    * Other integer, float, double and arrays of integers/floats coming soon.
+  * Currently only supports arrays of chars (strings), no arrays of number types (yet)
 * Validation of MAVLink messages
   * Message header
   * Message length

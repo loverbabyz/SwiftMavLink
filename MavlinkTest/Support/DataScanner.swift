@@ -27,6 +27,16 @@ struct DataScanner {
         return result
     }
 
+
+    mutating func scan() -> Int8? {
+        if let unsigned:UInt8 = scan() {
+            return Int8(unsigned)
+        }
+        else {
+            return nil
+        }
+    }
+
     mutating func scan() -> UInt16? {
         typealias Type = UInt16
         if atEnd {
@@ -40,6 +50,15 @@ struct DataScanner {
         return result
     }
 
+    mutating func scan() -> Int16? {
+        if let unsigned:UInt16 = scan() {
+            return Int16(unsigned)
+        }
+        else {
+            return nil
+        }
+    }
+
     mutating func scan() -> UInt32? {
         typealias Type = UInt32
         if atEnd {
@@ -51,6 +70,46 @@ struct DataScanner {
         // TODO; Endianness
         current = current.advancedBy(sizeof(Type))
         return result
+    }
+
+    mutating func scan() -> Int32? {
+        if let unsigned:UInt32 = scan() {
+            return Int32(unsigned)
+        }
+        else {
+            return nil
+        }
+    }
+
+    mutating func scan() -> UInt64? {
+        typealias Type = UInt64
+        if atEnd {
+            return nil
+        }
+        let offset = buffer.baseAddress.advancedBy(current)
+        let b = UnsafePointer <Type> (offset)
+        let result = b.memory
+        // TODO; Endianness
+        current = current.advancedBy(sizeof(Type))
+        return result
+    }
+
+    mutating func scan() -> Int64? {
+        if let unsigned:UInt64 = scan() {
+            return Int64(unsigned)
+        }
+        else {
+            return nil
+        }
+    }
+
+
+    mutating func scan() -> Float? {
+        return nil
+    }
+
+    mutating func scan() -> Double? {
+        return nil
     }
 
     mutating func scan(value:UInt8) -> Bool {
