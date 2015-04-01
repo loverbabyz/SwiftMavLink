@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ufwb version="1.9">
-    <grammar name="HEX grammar" start="id:6" author="Jonathan Wight" fileextension="hex">
-        <description>Grammar for HEX files</description>
-        <structure name="Mavlink File" id="6" encoding="ISO_8859-1:1987" endian="little" signed="no">
-            <structure name="Packet" id="8">
-                <binary name="Start" mustmatch="yes" id="9" length="1">
+    <grammar name="MAVLink Grammar" start="id:3" author="Jonathan Wight" fileextension="mavlink">
+        <description>Grammar for MAVLink files</description>
+        <structure name="Default" id="4" encoding="ISO_8859-1:1987" endian="little" signed="no"/>
+        <structure name="Mavlink File" id="3" extends="id:4">
+            <structure name="Packet" id="6" repeatmax="-1">
+                <binary name="Start" mustmatch="yes" id="7" fillcolor="72FA78" length="1">
                     <fixedvalues>
                         <fixedvalue name="FE" value="FE"/>
                     </fixedvalues>
                 </binary>
-                <number name="PayloadLength" id="10" type="integer" length="1"/>
-                <number name="Sequence" id="11" type="integer" length="1"/>
-                <number name="System-ID" id="12" type="integer" length="1"/>
-                <number name="Component-ID" id="13" type="integer" length="1"/>
-                <number name="Message-ID" id="14" type="integer" length="1"/>
-                <binary name="Payload" id="15" fillcolor="0096FF" length="PayloadLength"/>
-                <number name="CRC" id="16" type="integer" length="2"/>
+                <number name="PayloadLength" id="8" fillcolor="72FA78" type="integer" length="1"/>
+                <number name="Sequence" id="9" fillcolor="72FA78" type="integer" length="1"/>
+                <number name="System-ID" id="10" fillcolor="72FA78" type="integer" length="1"/>
+                <number name="Component-ID" id="11" fillcolor="72FA78" type="integer" length="1"/>
+                <number name="Message-ID" mustmatch="yes" id="12" fillcolor="FFD478" type="integer" length="1">
+                    <fixedvalues>
+                        <fixedvalue name="Payload_253" value="253"/>
+                        <fixedvalue name="Payload_1" value="1"/>
+                    </fixedvalues>
+                </number>
+                <structure name="Payload" id="13" length="PayloadLength" consists-of="id:14" order="variable">
+                    <structref name="Payload_1" id="30" repeatmin="0" structure="id:26"/>
+                    <structref name="Payload_253" id="16" repeatmin="0" structure="id:15"/>
+                </structure>
+                <number name="CRC" id="18" fillcolor="FF7D78" type="integer" length="2"/>
             </structure>
+        </structure>
+        <structure name="Payload" id="14" extends="id:4">
+            <binary name="data" id="21" repeatmax="-1" length="remaining"/>
+        </structure>
+        <structure name="Payload_1" id="26" extends="id:4" consists-of="id:14">
+            <binary name="&lt;new binary&gt;" id="29" fillcolor="FF84FF" length="2"/>
+        </structure>
+        <structure name="Payload_253" id="15" extends="id:4" consists-of="id:14">
+            <number name="severity" id="23" fillcolor="FFD478" type="integer" length="1"/>
+            <string name="text" id="24" fillcolor="FFD478" type="fixed-length" length="50"/>
         </structure>
     </grammar>
 </ufwb>
