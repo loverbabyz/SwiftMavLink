@@ -293,12 +293,12 @@ class DefinitionsSuite {
     func messageDefinitionWithID(messageID:Int) -> MessageDefinition? {
         // TODO: Do not download this from network. That's just silly!
         let commonURLs = [
-            NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/message_definitions/v1.0/common.xml"),
-            NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/message_definitions/v1.0/ardupilotmega.xml")
+            NSURL(string: "https://raw.githubusercontent.com/mavlink/mavlink/master/message_definitions/v1.0/common.xml"),
+//            NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/message_definitions/v1.0/common.xml"),
+//            NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/message_definitions/v1.0/ardupilotmega.xml")
         ]
 
         for commonURL in commonURLs {
-    //        let commonURL = NSURL(string: "https://raw.githubusercontent.com/mavlink/mavlink/master/message_definitions/v1.0/common.xml")
             let xmlDocument = NSXMLDocument(contentsOfURL: commonURL!, options: 0, error: nil)
             let xpath = "/mavlink/messages/message[@id=\(messageID)]"
             var error:NSError?
