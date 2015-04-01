@@ -8,22 +8,60 @@
 
 import Foundation
 
-// #############################################################################
+//struct Cursor {
+//    var current:Int
+//    var startIndex:Int
+//    var endIndex:Int
+//}
 
-//let data = "fe09000b1600ffffffff020180030022d8"
+extension DataScanner {
 
-let data = "fe33000b16fd014f4f505300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b32f"
-let d = NSData(hexString: data)
-let buffer:UnsafeBufferPointer <UInt8> = d!.buffer.asUnsafeBufferPointer()
-let message = Message(buffer: buffer)!
-println("\(message.definition.name): \(message.values)")
+    func scanUpTo(byte:UInt8) -> BufferType? {
+        let start = current
+        for ; current != buffer.endIndex; ++current {
+            if buffer[current] == byte {
+                break
+            }
+        }
+        if start == current {
+            return nil
+        }
+        return buffer[start..<current]
 
-//let fieldDefinition = message.definition.fieldsByName["system_status"]!
-//let offset = fieldDefinition.offset
-//let size = fieldDefinition.type.size
-//let value:UInt8? = message.valueAtOffset(offset:offset, size:size)
-//println(value)
+    }
 
+    func scan() -> Message? {
+        if let message = Message(buffer: remaining, skipCRC:true) {
+            current += message.length
+            return message
+        }
+        return nil
+    }
+}
+
+
+
+let url = NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/Logs/2015-03-31 20-51-06.tlog")!
+let data = NSData(contentsOfURL: url)!
+let buffer:UnsafeBufferPointer <UInt8> = data.buffer.asUnsafeBufferPointer()
+
+let scanner = DataScanner(buffer: buffer)
+
+while scanner.atEnd == false {
+    if let junk = scanner.scanUpTo(0xFE) {
+//        println("Skipping: \(junk.asHex)")
+    }
+    let message:Message? = scanner.scan()
+    if let message = message {
+        println(message.definition?.name)
+        println(message)
+        println(message.values)
+        println("################################################################################")
+    }
+    else {
+        break
+    }
+}
 
 
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		456E6C4C1AC9955200D83D52 /* SerialMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456E6C4B1AC9955200D83D52 /* SerialMain.swift */; };
+		45A3FA541ACB0D97001EA503 /* MavLink+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */; };
 		45E1EFE21AC9B93500929F06 /* MavLink+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */; };
 		45E1EFE31AC9B93500929F06 /* MavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* MavLink.swift */; };
 		45E1EFE41AC9B93500929F06 /* CRC16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDB1AC9B93500929F06 /* CRC16.swift */; };
@@ -32,7 +33,31 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		45561CFC1ACB00780020E098 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
+		45561CFD1ACB00780020E098 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
+		45561CFE1ACB00780020E098 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
+		45561CFF1ACB00780020E098 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
+		45561D001ACB00780020E098 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
+		45561D011ACB00780020E098 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
+		45561D021ACB00780020E098 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
+		45561D041ACB00780020E098 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
+		45561D051ACB00780020E098 /* ASLUAV.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ASLUAV.xml; sourceTree = "<group>"; };
+		45561D061ACB00780020E098 /* autoquad.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = autoquad.xml; sourceTree = "<group>"; };
+		45561D071ACB00780020E098 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
+		45561D081ACB00780020E098 /* matrixpilot.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = matrixpilot.xml; sourceTree = "<group>"; };
+		45561D091ACB00780020E098 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
+		45561D0A1ACB00780020E098 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
+		45561D0B1ACB00780020E098 /* python_array_test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = python_array_test.xml; sourceTree = "<group>"; };
+		45561D0C1ACB00780020E098 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
+		45561D0D1ACB00780020E098 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
+		45561D0E1ACB00780020E098 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
 		456E6C4B1AC9955200D83D52 /* SerialMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialMain.swift; sourceTree = "<group>"; };
+		458EA6491ACBABF00092FBDC /* 2015-03-31 20-51-06.tlog */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2015-03-31 20-51-06.tlog"; sourceTree = "<group>"; };
+		458EA64A1ACBABF00092FBDC /* 2015-03-31 20-52-30.tlog */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2015-03-31 20-52-30.tlog"; sourceTree = "<group>"; };
+		458EA64B1ACBABF00092FBDC /* 2015-03-31 21-04-28.tlog */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2015-03-31 21-04-28.tlog"; sourceTree = "<group>"; };
+		458EA64C1ACBABF00092FBDC /* Log.log.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Log.log.dat; sourceTree = "<group>"; };
+		458EA64D1ACBABF00092FBDC /* test.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.dat; sourceTree = "<group>"; };
+		45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MavLink+Convenience.swift"; sourceTree = "<group>"; };
 		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MavLink+XML.swift"; sourceTree = "<group>"; };
 		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MavLink.swift; sourceTree = "<group>"; };
 		45E1EFDB1AC9B93500929F06 /* CRC16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRC16.swift; sourceTree = "<group>"; };
@@ -57,10 +82,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45561CFA1ACB00780020E098 /* message_definitions */ = {
+			isa = PBXGroup;
+			children = (
+				45561CFB1ACB00780020E098 /* v0.9 */,
+				45561D031ACB00780020E098 /* v1.0 */,
+			);
+			path = message_definitions;
+			sourceTree = "<group>";
+		};
+		45561CFB1ACB00780020E098 /* v0.9 */ = {
+			isa = PBXGroup;
+			children = (
+				45561CFC1ACB00780020E098 /* ardupilotmega.xml */,
+				45561CFD1ACB00780020E098 /* common.xml */,
+				45561CFE1ACB00780020E098 /* minimal.xml */,
+				45561CFF1ACB00780020E098 /* pixhawk.xml */,
+				45561D001ACB00780020E098 /* slugs.xml */,
+				45561D011ACB00780020E098 /* test.xml */,
+				45561D021ACB00780020E098 /* ualberta.xml */,
+			);
+			path = v0.9;
+			sourceTree = "<group>";
+		};
+		45561D031ACB00780020E098 /* v1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				45561D041ACB00780020E098 /* ardupilotmega.xml */,
+				45561D051ACB00780020E098 /* ASLUAV.xml */,
+				45561D061ACB00780020E098 /* autoquad.xml */,
+				45561D071ACB00780020E098 /* common.xml */,
+				45561D081ACB00780020E098 /* matrixpilot.xml */,
+				45561D091ACB00780020E098 /* minimal.xml */,
+				45561D0A1ACB00780020E098 /* pixhawk.xml */,
+				45561D0B1ACB00780020E098 /* python_array_test.xml */,
+				45561D0C1ACB00780020E098 /* slugs.xml */,
+				45561D0D1ACB00780020E098 /* test.xml */,
+				45561D0E1ACB00780020E098 /* ualberta.xml */,
+			);
+			path = v1.0;
+			sourceTree = "<group>";
+		};
+		458EA6481ACBABF00092FBDC /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				458EA6491ACBABF00092FBDC /* 2015-03-31 20-51-06.tlog */,
+				458EA64A1ACBABF00092FBDC /* 2015-03-31 20-52-30.tlog */,
+				458EA64B1ACBABF00092FBDC /* 2015-03-31 21-04-28.tlog */,
+				458EA64C1ACBABF00092FBDC /* Log.log.dat */,
+				458EA64D1ACBABF00092FBDC /* test.dat */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
 		45E1EFD71AC9B93500929F06 /* Mavlink */ = {
 			isa = PBXGroup;
 			children = (
 				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
+				45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */,
 				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
 			);
 			path = Mavlink;
@@ -89,7 +168,9 @@
 		45E907DF1AC85F6F00541AF9 = {
 			isa = PBXGroup;
 			children = (
+				458EA6481ACBABF00092FBDC /* Logs */,
 				45F181241AC9FF5F00815F08 /* README.markdown */,
+				45561CFA1ACB00780020E098 /* message_definitions */,
 				45E907EA1AC85F6F00541AF9 /* MavlinkTest */,
 				45E907E91AC85F6F00541AF9 /* Products */,
 			);
@@ -171,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A3FA541ACB0D97001EA503 /* MavLink+Convenience.swift in Sources */,
 				45E1EFE71AC9B93500929F06 /* SerialPort.swift in Sources */,
 				45E1EFE91AC9B93500929F06 /* RegularExpression.swift in Sources */,
 				456E6C4C1AC9955200D83D52 /* SerialMain.swift in Sources */,

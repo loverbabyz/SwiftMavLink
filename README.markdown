@@ -40,7 +40,6 @@ STATUSTEXT: [text: OOPS, severity: 1]
 * Does not allow multiple schemas (yet)
 * Does not generate swift structs or enums.
 * No unit tests
-* Not tested against many message types yet
 * No construction of messages.
 * Beginnings of a Swift serial port class.
 

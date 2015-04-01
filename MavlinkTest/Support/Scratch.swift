@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 func hexNibbleToInt(nibble:Int8) -> UInt8? {
     switch nibble {
         case 0x30 ... 0x39:
@@ -51,6 +53,9 @@ extension NSData {
                 var P = outputBuffer.baseAddress
                 var hiNibble = true
                 for hexNibble in buffer {
+                    if hexNibble == 0x20 {
+                        continue
+                    }
                     if let nibble = hexNibbleToInt(hexNibble) {
                         if hiNibble {
                             P.memory = nibble << 4
@@ -110,5 +115,55 @@ extension UnsafeBufferPointer {
         let start = UnsafePointer <U> (baseAddress)
         let count = (self.count * max(sizeof(T), 1)) / max(sizeof(U), 1)
         return UnsafeBufferPointer <U> (start:start, count:count)
+    }
+}
+
+
+func log2(v:Int) -> Int {
+    return Int(log2(Float(v)))
+}
+
+extension UInt8 {
+    var asHex:String {
+        get {
+            return intToHex(Int(self))
+        }
+    }
+}
+
+extension UInt16 {
+    var asHex:String {
+        get {
+            return intToHex(Int(self))
+        }
+    }
+}
+
+func intToHex(value:Int, skipLeadingZeros:Bool = true, addPrefix:Bool = false, lowercase:Bool = false) -> String {
+    var s = ""
+    var skipZeros = skipLeadingZeros
+    let digits = log2(Int.max) / 8
+    for var n:Int = digits; n >= 0; --n {
+        let shift = n * 4
+        let nibble = (value >> shift) & 0xF
+        if !(skipZeros == true && nibble == 0) {
+            s += nibbleAsHex(nibble, lowercase:lowercase)
+            skipZeros = false
+        }
+    }
+    return addPrefix ? "0x" + s : s
+}
+
+func nibbleAsHex(nibble:Int, lowercase:Bool = false) -> String {
+    let uppercaseDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+    let lowercaseDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
+    return lowercase ? lowercaseDigits[nibble] : uppercaseDigits[nibble]
+}
+
+extension UnsafeBufferPointer {
+    subscript (range:Range <Int>) -> UnsafeBufferPointer <T> {
+        get {
+            return UnsafeBufferPointer <T> (start: baseAddress + range.startIndex, count:range.endIndex - range.startIndex)
+        }
     }
 }

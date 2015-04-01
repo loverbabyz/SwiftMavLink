@@ -50,20 +50,32 @@ struct MessageDefinition {
         return UInt8((crc.crc & 0xFF) ^ (crc.crc >> 8))
     }
 
-//    static func stringForSeed(# name:String, fields:[FieldDefinition]) -> String {
-//        var s = ""
-//        s += (name + " ")
-//        for f in fields {
-//            s += (f.type.name + " ")
-//            s += (f.name + " ")
-//            if let count = f.count {
-//                s += ("\(count)")
-//            }
-//        }
-//        return s
-//    }
+    var stringForSeed:String {
+        get {
+            return MessageDefinition.stringForSeed(name:name, fields:fields)
+        }
+    }
 
+    static func stringForSeed(# name:String, fields:[FieldDefinition]) -> String {
+        var s = ""
+        s += (name + " ")
+        for f in fields {
+            s += (f.type.name + " ")
+            s += (f.name + " ")
+            if let count = f.count {
+                s += ("\(count)")
+            }
+        }
+        return s
+    }
+}
 
+extension MessageDefinition: Printable {
+    var description: String {
+        get {
+            return "MessageDefinition(id:\(id), name:\(name), fields:\(fields), seed:\(seed))"
+        }
+    }
 }
 
 // MARK: -
@@ -99,10 +111,15 @@ func <(lhs:FieldDefinition, rhs:FieldDefinition) -> Bool {
     }
 }
 
-extension FieldDefinition: Printable {
+extension FieldDefinition: Printable, DebugPrintable {
     var description: String {
         get {
             return name
+        }
+    }
+    var debugDescription: String {
+        get {
+            return "FieldDefinition(index:\(index), type:\(type), count:\(count), name:\(name), offset:\(offset))"
         }
     }
 }
@@ -216,10 +233,18 @@ enum FieldType {
     }
 }
 
+extension FieldType: Printable {
+    var description: String {
+        get {
+            return name
+        }
+    }
+}
+
 // MARK: -
 
 extension DataScanner {
-    mutating func scan(type:FieldType, count:Int?) -> Any? {
+    func scan(type:FieldType, count:Int?) -> Any? {
         switch type {
             case .char:
                 let count = count ?? 1
@@ -264,35 +289,53 @@ extension DataScanner {
 class DefinitionsSuite {
 
     static var sharedSuite = DefinitionsSuite()
-    
+
     func messageDefinitionWithID(messageID:Int) -> MessageDefinition? {
         // TODO: Do not download this from network. That's just silly!
-//        let commonURL = NSURL(fileURLWithPath: "/Users/schwa/Desktop/mavlink/message_definitions/v1.0/common.xml")
-        let commonURL = NSURL(string: "https://raw.githubusercontent.com/mavlink/mavlink/master/message_definitions/v1.0/common.xml")
-        let xmlDocument = NSXMLDocument(contentsOfURL: commonURL!, options: 0, error: nil)
-        let xpath = "/mavlink/messages/message[@id=\(messageID)]"
-        var error:NSError?
-        let nodes = xmlDocument!.nodesForXPath(xpath, error: &error) as? [NSXMLElement]
-        let messageNode = nodes?.last
-        let messageDefinition = MessageDefinition(xml:messageNode!)!
-        return messageDefinition
+        let commonURLs = [
+            NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/message_definitions/v1.0/common.xml"),
+            NSURL(fileURLWithPath: "/Users/schwa/Development/Source/Projects/SwiftMavlink/message_definitions/v1.0/ardupilotmega.xml")
+        ]
+
+        for commonURL in commonURLs {
+    //        let commonURL = NSURL(string: "https://raw.githubusercontent.com/mavlink/mavlink/master/message_definitions/v1.0/common.xml")
+            let xmlDocument = NSXMLDocument(contentsOfURL: commonURL!, options: 0, error: nil)
+            let xpath = "/mavlink/messages/message[@id=\(messageID)]"
+            var error:NSError?
+            let nodes = xmlDocument!.nodesForXPath(xpath, error: &error) as? [NSXMLElement]
+            if let messageNode = nodes?.last {
+                let messageDefinition = MessageDefinition(xml:messageNode)
+                return messageDefinition
+            }
+        }
+
+    println("WARNING: No message definition found for  id \(messageID)")
+    return nil
     }
 }
 
 // MARK: -
 
 struct Message {
-    let definition:MessageDefinition!
+    let definition:MessageDefinition?
+    let payloadLength:UInt8!
     let sequence:UInt8!
     let systemID:UInt8!
     let componentID:UInt8!
     let messageID:UInt8!
     let payload:UnsafeBufferPointer <UInt8>!
+    let crc:UInt16?
+
+    var length:Int {
+        get {
+            return 6 + payload.count + 2
+        }
+    }
 }
 
 extension Message {
     
-    init?(buffer:UnsafeBufferPointer <UInt8>) {
+    init?(buffer:UnsafeBufferPointer <UInt8>, skipCRC:Bool = false) {
         
         if buffer.count < 8 {
             println("Buffer too small")
@@ -302,6 +345,9 @@ extension Message {
         var scanner = DataScanner(buffer: buffer)
         
         let header = scanner.scan(0xFE)
+        if header == false {
+            return nil
+        }
         let payloadLength:UInt8? = scanner.scan()
         
         if let payloadLength = payloadLength {
@@ -310,6 +356,7 @@ extension Message {
                 return nil
             }
         }
+
         
         let sequence:UInt8? = scanner.scan()
         let systemID:UInt8? = scanner.scan()
@@ -317,27 +364,33 @@ extension Message {
         let messageID:UInt8? = scanner.scan()
         let payload = scanner.scanBuffer(Int(payloadLength!))
         let crc:UInt16? = scanner.scan()
-        assert(scanner.atEnd)
+//        assert(scanner.atEnd)
         
         if let payloadLength = payloadLength, let sequence = sequence, let systemID = systemID, let componentID = componentID, let messageID = messageID, let payload = payload, let crc = crc {
-            definition = DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
-            
-            let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
-            if computedCRC != crc {
-                println("Conputed CRC doesn't agree with CRC")
-                return nil
+            let definition = DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
+            if let definition = definition {
+                let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
+                if computedCRC != crc {
+                    println("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+                    if skipCRC == false {
+                        return nil
+                    }
+                }
             }
-            
+            self.definition = definition
+            self.payloadLength = payloadLength
             self.sequence = sequence
             self.systemID = systemID
             self.componentID = componentID
             self.messageID = messageID
             self.payload = payload
+            self.crc = crc
+            return
+
         }
-        else {
-            println("Could not scan message")
-            return nil
-        }
+
+        println("Could not scan message")
+        return nil
     }
     
     func valueAtOffset <T> (# offset:Int, size:Int) -> T? {
@@ -349,14 +402,19 @@ extension Message {
     
     var values:[String:Any] {
         get {
-            var values:[String:Any] = [:]
-            var payloadScanner = DataScanner(buffer: payload!)
-            for field in definition.fields {
-                var value:Any? = payloadScanner.scan(field.type, count:field.count)
-                values[field.name] = value
+            if let definition = definition {
+                var values:[String:Any] = [:]
+                var payloadScanner = DataScanner(buffer: payload!)
+                for field in definition.fields {
+                    var value:Any? = payloadScanner.scan(field.type, count:field.count)
+                    values[field.name] = value
+                }
+    //            assert(payloadScanner.atEnd)
+                return values
             }
-            assert(payloadScanner.atEnd)
-            return values
+            else {
+                return [:]
+            }
         }
     }
     
@@ -365,11 +423,25 @@ extension Message {
             println("Buffer too small to CRC")
             return nil
         }
-        let subBuffer = UnsafeBufferPointer <UInt8> (start:buffer.baseAddress.advancedBy(1), count:buffer.count - 3)
+
+        let length = buffer[1]
+        let subBuffer = UnsafeBufferPointer <UInt8> (start:buffer.baseAddress.advancedBy(1), count:Int(length) + 5)
         var crc = CRC16()
         crc.accumulate(subBuffer)
         crc.accumulate([seed])
         return crc.crc
     }
     
+}
+
+extension Message: Printable {
+    var description: String {
+        get {
+            var s = "Message(payloadLength:\(payloadLength), sequence:\(sequence), systemID:\(systemID), componentID:\(componentID), messageID:\(messageID)"
+            if let crc = crc {
+                s +=  ", crc: 0x\(crc.asHex))"
+            }
+            return s
+        }
+    }
 }

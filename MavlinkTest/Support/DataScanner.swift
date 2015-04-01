@@ -8,17 +8,23 @@
 
 import Foundation
 
-struct DataScanner {
+class DataScanner {
     typealias BufferType = UnsafeBufferPointer <UInt8>
     let buffer:BufferType
     var current:BufferType.Index
+
+    var remaining:BufferType {
+        get {
+            return BufferType(start: buffer.baseAddress + current, count: buffer.count - current)
+        }
+    }
 
     init(buffer:BufferType) {
         self.buffer = buffer
         current = self.buffer.startIndex
     }
 
-    mutating func scan() -> UInt8? {
+    func scan() -> UInt8? {
         if atEnd {
             return nil
         }
@@ -28,16 +34,16 @@ struct DataScanner {
     }
 
 
-    mutating func scan() -> Int8? {
+    func scan() -> Int8? {
         if let unsigned:UInt8 = scan() {
-            return Int8(unsigned)
+            return Int8(bitPattern:unsigned)
         }
         else {
             return nil
         }
     }
 
-    mutating func scan() -> UInt16? {
+    func scan() -> UInt16? {
         typealias Type = UInt16
         if atEnd {
             return nil
@@ -50,16 +56,16 @@ struct DataScanner {
         return result
     }
 
-    mutating func scan() -> Int16? {
+    func scan() -> Int16? {
         if let unsigned:UInt16 = scan() {
-            return Int16(unsigned)
+            return Int16(bitPattern:unsigned)
         }
         else {
             return nil
         }
     }
 
-    mutating func scan() -> UInt32? {
+    func scan() -> UInt32? {
         typealias Type = UInt32
         if atEnd {
             return nil
@@ -72,16 +78,16 @@ struct DataScanner {
         return result
     }
 
-    mutating func scan() -> Int32? {
+    func scan() -> Int32? {
         if let unsigned:UInt32 = scan() {
-            return Int32(unsigned)
+            return Int32(bitPattern:unsigned)
         }
         else {
             return nil
         }
     }
 
-    mutating func scan() -> UInt64? {
+    func scan() -> UInt64? {
         typealias Type = UInt64
         if atEnd {
             return nil
@@ -94,9 +100,9 @@ struct DataScanner {
         return result
     }
 
-    mutating func scan() -> Int64? {
+    func scan() -> Int64? {
         if let unsigned:UInt64 = scan() {
-            return Int64(unsigned)
+            return Int64(bitPattern:unsigned)
         }
         else {
             return nil
@@ -104,15 +110,33 @@ struct DataScanner {
     }
 
 
-    mutating func scan() -> Float? {
-        return nil
+    func scan() -> Float? {
+        typealias Type = Float
+        if atEnd {
+            return nil
+        }
+        let offset = buffer.baseAddress.advancedBy(current)
+        let b = UnsafePointer <Type> (offset)
+        let result = b.memory
+        // TODO; Endianness
+        current = current.advancedBy(sizeof(Type))
+        return result
     }
 
-    mutating func scan() -> Double? {
-        return nil
+    func scan() -> Double? {
+        typealias Type = Double
+        if atEnd {
+            return nil
+        }
+        let offset = buffer.baseAddress.advancedBy(current)
+        let b = UnsafePointer <Type> (offset)
+        let result = b.memory
+        // TODO; Endianness
+        current = current.advancedBy(sizeof(Type))
+        return result
     }
 
-    mutating func scan(value:UInt8) -> Bool {
+    func scan(value:UInt8) -> Bool {
         if let scannedValue:UInt8 = scan() {
             return scannedValue == value
         }
@@ -121,7 +145,7 @@ struct DataScanner {
         }
     }
 
-    mutating func scanBuffer(count:Int) -> UnsafeBufferPointer <UInt8>? {
+    func scanBuffer(count:Int) -> UnsafeBufferPointer <UInt8>? {
         if atEnd {
             return nil
         }
@@ -130,7 +154,7 @@ struct DataScanner {
         return scannedBuffer
     }
 
-    mutating func scanString(count:Int) -> String? {
+    func scanString(count:Int) -> String? {
         if atEnd {
             return nil
         }
@@ -145,7 +169,6 @@ struct DataScanner {
             return nil
         }
     }
-
 
     var atEnd:Bool {
         get {
