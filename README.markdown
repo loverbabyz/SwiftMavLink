@@ -17,13 +17,11 @@ let data = "fe33000b16fd014f4f50530000000000000000000000000000000000000000000000
 let d = NSData(hexString: data)
 let buffer:UnsafeBufferPointer <UInt8> = d!.buffer.asUnsafeBufferPointer()
 let message = Message(buffer: buffer)!
-println("\(message.definition.name): \(message.values)")
+print("\(message.definition.name): \(message.values)")
 ```
 Produces this output:
 
-```
-STATUSTEXT: [text: OOPS, severity: 1]
-```
+`STATUSTEXT: [text: OOPS, severity: 1]`
 
 (Which is correct. Honest. Going to have to trust me until I get some unit tests buddy)
 
@@ -53,3 +51,15 @@ BSD 2-Clause: See LICENSE file
 * http://qgroundcontrol.org/mavlink/start
 * http://qgroundcontrol.org/mavlink/crc_extra_calculation
 
+#
+
+See: http://dev.ardupilot.com/wiki/simulation-2/sitl-simulator-software-in-the-loop/
+
+pip install git+https://github.com/3drobotics/dronekit-sitl-runner
+
+brew install wxpython
+
+pip install git+https://github.com/tcr3dr/MAVProxy@tcr-fixwx
+
+dronekit-sitl copter-3.4-dev -I0 -S --model quad --home=-35.363261,149.165230,584,353
+mavproxy.py --master tcp:127.0.0.1:5760 --sitl 127.0.0.1:5501 --out=udp:127.0.0.1:14550

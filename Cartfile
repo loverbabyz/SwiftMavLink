@@ -1,0 +1,4 @@
+github "schwa/SwiftIO" "jwight/Carthage"
+github "schwa/SwiftUtilities" "jwight/Swift2"
+github "schwa/SwiftLogging" "jwight/Swift2"
+

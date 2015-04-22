@@ -57,7 +57,7 @@ class SerialPort {
         assert(result == 0)
 
         channel = dispatch_io_create(DISPATCH_IO_STREAM, dispatch_fd_t(fileDescriptor), dispatch_get_main_queue()) {
-            println("cleanup \($0)")
+            print("cleanup \($0)", appendNewline: false)
         }
 
         read()
@@ -70,9 +70,9 @@ class SerialPort {
         dispatch_io_read(channel, 0, 16, dispatch_get_main_queue()) {
             [unowned self] (done:Bool, data:dispatch_data_t!, error:Int32) -> Void in
 
-//            println(done)
-//            println(data)
-//            println(error)
+//            print(done)
+//            print(data)
+//            print(error)
 
             if self.buffer == nil {
                 self.buffer = data
@@ -81,9 +81,9 @@ class SerialPort {
                 self.buffer = dispatch_data_create_concat(self.buffer, data)
             }
 
-            println(dispatch_data_get_size(self.buffer))
+            print(dispatch_data_get_size(self.buffer), appendNewline: false)
             if dispatch_data_get_size(self.buffer) > 512 {
-                println(self.buffer)
+                print(self.buffer, appendNewline: false)
                 self.buffer = nil
             }
 

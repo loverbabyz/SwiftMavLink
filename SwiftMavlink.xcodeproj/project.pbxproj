@@ -7,171 +7,181 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		456E6C4C1AC9955200D83D52 /* SerialMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456E6C4B1AC9955200D83D52 /* SerialMain.swift */; };
-		45A3FA541ACB0D97001EA503 /* MavLink+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */; };
-		45E1EFE21AC9B93500929F06 /* MavLink+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */; };
-		45E1EFE31AC9B93500929F06 /* MavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* MavLink.swift */; };
-		45E1EFE41AC9B93500929F06 /* CRC16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDB1AC9B93500929F06 /* CRC16.swift */; };
-		45E1EFE51AC9B93500929F06 /* DataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDC1AC9B93500929F06 /* DataScanner.swift */; };
-		45E1EFE61AC9B93500929F06 /* Scratch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDD1AC9B93500929F06 /* Scratch.swift */; };
-		45E1EFE71AC9B93500929F06 /* SerialPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDE1AC9B93500929F06 /* SerialPort.swift */; };
-		45E1EFE81AC9B93500929F06 /* SwiftIOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFDF1AC9B93500929F06 /* SwiftIOKit.swift */; };
-		45E1EFE91AC9B93500929F06 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFE11AC9B93500929F06 /* RegularExpression.swift */; };
-		45E907EC1AC85F6F00541AF9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E907EB1AC85F6F00541AF9 /* main.swift */; };
+		451991031B4CD04000901BA2 /* ardupilotmega.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F021AE851330066EC43 /* ardupilotmega.xml */; };
+		451991041B4CD04000901BA2 /* ASLUAV.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F031AE851330066EC43 /* ASLUAV.xml */; };
+		451991051B4CD04000901BA2 /* autoquad.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F041AE851330066EC43 /* autoquad.xml */; };
+		451991061B4CD04000901BA2 /* common.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F051AE851330066EC43 /* common.xml */; };
+		451991071B4CD04000901BA2 /* matrixpilot.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F061AE851330066EC43 /* matrixpilot.xml */; };
+		451991081B4CD04000901BA2 /* minimal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F071AE851330066EC43 /* minimal.xml */; };
+		451991091B4CD04000901BA2 /* pixhawk.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F081AE851330066EC43 /* pixhawk.xml */; };
+		4519910A1B4CD04000901BA2 /* python_array_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F091AE851330066EC43 /* python_array_test.xml */; };
+		4519910B1B4CD04000901BA2 /* slugs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F0A1AE851330066EC43 /* slugs.xml */; };
+		4519910C1B4CD04000901BA2 /* test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F0B1AE851330066EC43 /* test.xml */; };
+		4519910D1B4CD04000901BA2 /* ualberta.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F0C1AE851330066EC43 /* ualberta.xml */; };
+		45761F031B4CBD4D00506E83 /* SwiftMavlink.h in Headers */ = {isa = PBXBuildFile; fileRef = 45761F021B4CBD4D00506E83 /* SwiftMavlink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45761F1E1B4CBD9400506E83 /* MavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* MavLink.swift */; };
+		45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */; };
+		45761F2F1B4CBE8400506E83 /* MavLink+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */; };
+		45761F301B4CBE8400506E83 /* MavLink+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */; };
+		45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		45E907E61AC85F6F00541AF9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		45561CFC1ACB00780020E098 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
-		45561CFD1ACB00780020E098 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
-		45561CFE1ACB00780020E098 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
-		45561CFF1ACB00780020E098 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
-		45561D001ACB00780020E098 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
-		45561D011ACB00780020E098 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
-		45561D021ACB00780020E098 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
-		45561D041ACB00780020E098 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
-		45561D051ACB00780020E098 /* ASLUAV.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ASLUAV.xml; sourceTree = "<group>"; };
-		45561D061ACB00780020E098 /* autoquad.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = autoquad.xml; sourceTree = "<group>"; };
-		45561D071ACB00780020E098 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
-		45561D081ACB00780020E098 /* matrixpilot.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = matrixpilot.xml; sourceTree = "<group>"; };
-		45561D091ACB00780020E098 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
-		45561D0A1ACB00780020E098 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
-		45561D0B1ACB00780020E098 /* python_array_test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = python_array_test.xml; sourceTree = "<group>"; };
-		45561D0C1ACB00780020E098 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
-		45561D0D1ACB00780020E098 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
-		45561D0E1ACB00780020E098 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
-		456E6C4B1AC9955200D83D52 /* SerialMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialMain.swift; sourceTree = "<group>"; };
-		458EA6491ACBABF00092FBDC /* 2015-03-31 20-51-06.tlog */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2015-03-31 20-51-06.tlog"; sourceTree = "<group>"; };
-		458EA64A1ACBABF00092FBDC /* 2015-03-31 20-52-30.tlog */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2015-03-31 20-52-30.tlog"; sourceTree = "<group>"; };
-		458EA64B1ACBABF00092FBDC /* 2015-03-31 21-04-28.tlog */ = {isa = PBXFileReference; lastKnownFileType = file; path = "2015-03-31 21-04-28.tlog"; sourceTree = "<group>"; };
-		458EA64C1ACBABF00092FBDC /* Log.log.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Log.log.dat; sourceTree = "<group>"; };
-		458EA64D1ACBABF00092FBDC /* test.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.dat; sourceTree = "<group>"; };
-		45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MavLink+Convenience.swift"; sourceTree = "<group>"; };
-		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MavLink+XML.swift"; sourceTree = "<group>"; };
-		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MavLink.swift; sourceTree = "<group>"; };
-		45E1EFDB1AC9B93500929F06 /* CRC16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRC16.swift; sourceTree = "<group>"; };
-		45E1EFDC1AC9B93500929F06 /* DataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataScanner.swift; sourceTree = "<group>"; };
-		45E1EFDD1AC9B93500929F06 /* Scratch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scratch.swift; sourceTree = "<group>"; };
-		45E1EFDE1AC9B93500929F06 /* SerialPort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialPort.swift; sourceTree = "<group>"; };
-		45E1EFDF1AC9B93500929F06 /* SwiftIOKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIOKit.swift; sourceTree = "<group>"; };
-		45E1EFE11AC9B93500929F06 /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
-		45E907E81AC85F6F00541AF9 /* SwiftMavlink */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftMavlink; sourceTree = BUILT_PRODUCTS_DIR; };
-		45E907EB1AC85F6F00541AF9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		451991101B4CD3A400901BA2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMavlink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45761F021B4CBD4D00506E83 /* SwiftMavlink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftMavlink.h; sourceTree = "<group>"; };
+		45761F041B4CBD4D00506E83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+Convenience.swift"; path = "../MavlinkTest/Mavlink/MavLink+Convenience.swift"; sourceTree = "<group>"; };
+		45B9DE9E1B753460009FD963 /* SwiftIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftIO.framework; sourceTree = "<group>"; };
+		45B9DE9F1B753460009FD963 /* SwiftLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftLogging.framework; sourceTree = "<group>"; };
+		45B9DEA01B753460009FD963 /* SwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftUtilities.framework; sourceTree = "<group>"; };
+		45B9DEA21B753460009FD963 /* SwiftIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftIO.framework; sourceTree = "<group>"; };
+		45B9DEA31B753460009FD963 /* SwiftLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftLogging.framework; sourceTree = "<group>"; };
+		45B9DEA41B753460009FD963 /* SwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftUtilities.framework; sourceTree = "<group>"; };
+		45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavlinkDataScanner.swift; path = ../MavlinkTest/Mavlink/MavlinkDataScanner.swift; sourceTree = "<group>"; };
+		45CE0EFA1AE851330066EC43 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
+		45CE0EFB1AE851330066EC43 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
+		45CE0EFC1AE851330066EC43 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
+		45CE0EFD1AE851330066EC43 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
+		45CE0EFE1AE851330066EC43 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
+		45CE0EFF1AE851330066EC43 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
+		45CE0F001AE851330066EC43 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
+		45CE0F021AE851330066EC43 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
+		45CE0F031AE851330066EC43 /* ASLUAV.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ASLUAV.xml; sourceTree = "<group>"; };
+		45CE0F041AE851330066EC43 /* autoquad.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = autoquad.xml; sourceTree = "<group>"; };
+		45CE0F051AE851330066EC43 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
+		45CE0F061AE851330066EC43 /* matrixpilot.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = matrixpilot.xml; sourceTree = "<group>"; };
+		45CE0F071AE851330066EC43 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
+		45CE0F081AE851330066EC43 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
+		45CE0F091AE851330066EC43 /* python_array_test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = python_array_test.xml; sourceTree = "<group>"; };
+		45CE0F0A1AE851330066EC43 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
+		45CE0F0B1AE851330066EC43 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
+		45CE0F0C1AE851330066EC43 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
+		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+XML.swift"; path = "../MavlinkTest/Mavlink/MavLink+XML.swift"; sourceTree = "<group>"; };
+		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavLink.swift; path = ../MavlinkTest/Mavlink/MavLink.swift; sourceTree = "<group>"; };
 		45F181241AC9FF5F00815F08 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		45E907E51AC85F6F00541AF9 /* Frameworks */ = {
+		45761EFC1B4CBD4D00506E83 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		45561CFA1ACB00780020E098 /* message_definitions */ = {
+		451991151B4CD6C500901BA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				45561CFB1ACB00780020E098 /* v0.9 */,
-				45561D031ACB00780020E098 /* v1.0 */,
+				451991101B4CD3A400901BA2 /* MapKit.framework */,
 			);
-			path = message_definitions;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		45561CFB1ACB00780020E098 /* v0.9 */ = {
+		45761F011B4CBD4D00506E83 /* SwiftMavlink */ = {
 			isa = PBXGroup;
 			children = (
-				45561CFC1ACB00780020E098 /* ardupilotmega.xml */,
-				45561CFD1ACB00780020E098 /* common.xml */,
-				45561CFE1ACB00780020E098 /* minimal.xml */,
-				45561CFF1ACB00780020E098 /* pixhawk.xml */,
-				45561D001ACB00780020E098 /* slugs.xml */,
-				45561D011ACB00780020E098 /* test.xml */,
-				45561D021ACB00780020E098 /* ualberta.xml */,
+				45CE0EF81AE851330066EC43 /* message_definitions */,
+				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
+				45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */,
+				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
+				45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */,
+				45761F021B4CBD4D00506E83 /* SwiftMavlink.h */,
+				45761F041B4CBD4D00506E83 /* Info.plist */,
+			);
+			path = SwiftMavlink;
+			sourceTree = "<group>";
+		};
+		45B9DE9B1B753460009FD963 /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				45B9DE9C1B753460009FD963 /* Build */,
+			);
+			path = Carthage;
+			sourceTree = "<group>";
+		};
+		45B9DE9C1B753460009FD963 /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				45B9DE9D1B753460009FD963 /* iOS */,
+				45B9DEA11B753460009FD963 /* Mac */,
+			);
+			path = Build;
+			sourceTree = "<group>";
+		};
+		45B9DE9D1B753460009FD963 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				45B9DE9E1B753460009FD963 /* SwiftIO.framework */,
+				45B9DE9F1B753460009FD963 /* SwiftLogging.framework */,
+				45B9DEA01B753460009FD963 /* SwiftUtilities.framework */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		45B9DEA11B753460009FD963 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				45B9DEA21B753460009FD963 /* SwiftIO.framework */,
+				45B9DEA31B753460009FD963 /* SwiftLogging.framework */,
+				45B9DEA41B753460009FD963 /* SwiftUtilities.framework */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		45CE0EF81AE851330066EC43 /* message_definitions */ = {
+			isa = PBXGroup;
+			children = (
+				45CE0EF91AE851330066EC43 /* v0.9 */,
+				45CE0F011AE851330066EC43 /* v1.0 */,
+			);
+			name = message_definitions;
+			path = ../message_definitions;
+			sourceTree = "<group>";
+		};
+		45CE0EF91AE851330066EC43 /* v0.9 */ = {
+			isa = PBXGroup;
+			children = (
+				45CE0EFA1AE851330066EC43 /* ardupilotmega.xml */,
+				45CE0EFB1AE851330066EC43 /* common.xml */,
+				45CE0EFC1AE851330066EC43 /* minimal.xml */,
+				45CE0EFD1AE851330066EC43 /* pixhawk.xml */,
+				45CE0EFE1AE851330066EC43 /* slugs.xml */,
+				45CE0EFF1AE851330066EC43 /* test.xml */,
+				45CE0F001AE851330066EC43 /* ualberta.xml */,
 			);
 			path = v0.9;
 			sourceTree = "<group>";
 		};
-		45561D031ACB00780020E098 /* v1.0 */ = {
+		45CE0F011AE851330066EC43 /* v1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				45561D041ACB00780020E098 /* ardupilotmega.xml */,
-				45561D051ACB00780020E098 /* ASLUAV.xml */,
-				45561D061ACB00780020E098 /* autoquad.xml */,
-				45561D071ACB00780020E098 /* common.xml */,
-				45561D081ACB00780020E098 /* matrixpilot.xml */,
-				45561D091ACB00780020E098 /* minimal.xml */,
-				45561D0A1ACB00780020E098 /* pixhawk.xml */,
-				45561D0B1ACB00780020E098 /* python_array_test.xml */,
-				45561D0C1ACB00780020E098 /* slugs.xml */,
-				45561D0D1ACB00780020E098 /* test.xml */,
-				45561D0E1ACB00780020E098 /* ualberta.xml */,
+				45CE0F021AE851330066EC43 /* ardupilotmega.xml */,
+				45CE0F031AE851330066EC43 /* ASLUAV.xml */,
+				45CE0F041AE851330066EC43 /* autoquad.xml */,
+				45CE0F051AE851330066EC43 /* common.xml */,
+				45CE0F061AE851330066EC43 /* matrixpilot.xml */,
+				45CE0F071AE851330066EC43 /* minimal.xml */,
+				45CE0F081AE851330066EC43 /* pixhawk.xml */,
+				45CE0F091AE851330066EC43 /* python_array_test.xml */,
+				45CE0F0A1AE851330066EC43 /* slugs.xml */,
+				45CE0F0B1AE851330066EC43 /* test.xml */,
+				45CE0F0C1AE851330066EC43 /* ualberta.xml */,
 			);
 			path = v1.0;
-			sourceTree = "<group>";
-		};
-		458EA6481ACBABF00092FBDC /* Logs */ = {
-			isa = PBXGroup;
-			children = (
-				458EA6491ACBABF00092FBDC /* 2015-03-31 20-51-06.tlog */,
-				458EA64A1ACBABF00092FBDC /* 2015-03-31 20-52-30.tlog */,
-				458EA64B1ACBABF00092FBDC /* 2015-03-31 21-04-28.tlog */,
-				458EA64C1ACBABF00092FBDC /* Log.log.dat */,
-				458EA64D1ACBABF00092FBDC /* test.dat */,
-			);
-			path = Logs;
-			sourceTree = "<group>";
-		};
-		45E1EFD71AC9B93500929F06 /* Mavlink */ = {
-			isa = PBXGroup;
-			children = (
-				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
-				45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */,
-				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
-			);
-			path = Mavlink;
-			sourceTree = "<group>";
-		};
-		45E1EFDA1AC9B93500929F06 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				45E1EFDB1AC9B93500929F06 /* CRC16.swift */,
-				45E1EFDC1AC9B93500929F06 /* DataScanner.swift */,
-				45E1EFDD1AC9B93500929F06 /* Scratch.swift */,
-				45E1EFDE1AC9B93500929F06 /* SerialPort.swift */,
-				45E1EFDF1AC9B93500929F06 /* SwiftIOKit.swift */,
-			);
-			path = Support;
-			sourceTree = "<group>";
-		};
-		45E1EFE01AC9B93500929F06 /* SwiftUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				45E1EFE11AC9B93500929F06 /* RegularExpression.swift */,
-			);
-			path = SwiftUtilities;
 			sourceTree = "<group>";
 		};
 		45E907DF1AC85F6F00541AF9 = {
 			isa = PBXGroup;
 			children = (
-				458EA6481ACBABF00092FBDC /* Logs */,
 				45F181241AC9FF5F00815F08 /* README.markdown */,
-				45561CFA1ACB00780020E098 /* message_definitions */,
-				45E907EA1AC85F6F00541AF9 /* MavlinkTest */,
+				45761F011B4CBD4D00506E83 /* SwiftMavlink */,
+				45B9DE9B1B753460009FD963 /* Carthage */,
+				451991151B4CD6C500901BA2 /* Frameworks */,
 				45E907E91AC85F6F00541AF9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -179,42 +189,42 @@
 		45E907E91AC85F6F00541AF9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45E907E81AC85F6F00541AF9 /* SwiftMavlink */,
+				45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		45E907EA1AC85F6F00541AF9 /* MavlinkTest */ = {
-			isa = PBXGroup;
-			children = (
-				45E907EB1AC85F6F00541AF9 /* main.swift */,
-				456E6C4B1AC9955200D83D52 /* SerialMain.swift */,
-				45E1EFD71AC9B93500929F06 /* Mavlink */,
-				45E1EFDA1AC9B93500929F06 /* Support */,
-				45E1EFE01AC9B93500929F06 /* SwiftUtilities */,
-			);
-			path = MavlinkTest;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		45761EFD1B4CBD4D00506E83 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45761F031B4CBD4D00506E83 /* SwiftMavlink.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		45E907E71AC85F6F00541AF9 /* SwiftMavlink */ = {
+		45761EFF1B4CBD4D00506E83 /* SwiftMavlink */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45E907EF1AC85F6F00541AF9 /* Build configuration list for PBXNativeTarget "SwiftMavlink" */;
+			buildConfigurationList = 45761F1C1B4CBD4D00506E83 /* Build configuration list for PBXNativeTarget "SwiftMavlink" */;
 			buildPhases = (
-				45E907E41AC85F6F00541AF9 /* Sources */,
-				45E907E51AC85F6F00541AF9 /* Frameworks */,
-				45E907E61AC85F6F00541AF9 /* CopyFiles */,
+				45761EFB1B4CBD4D00506E83 /* Sources */,
+				45761EFC1B4CBD4D00506E83 /* Frameworks */,
+				45761EFD1B4CBD4D00506E83 /* Headers */,
+				45761EFE1B4CBD4D00506E83 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SwiftMavlink;
-			productName = MavlinkTest;
-			productReference = 45E907E81AC85F6F00541AF9 /* SwiftMavlink */;
-			productType = "com.apple.product-type.tool";
+			productName = SwiftMavlink;
+			productReference = 45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -222,11 +232,12 @@
 		45E907E01AC85F6F00541AF9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = schwa.io;
 				TargetAttributes = {
-					45E907E71AC85F6F00541AF9 = {
-						CreatedOnToolsVersion = 6.3;
+					45761EFF1B4CBD4D00506E83 = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -236,39 +247,108 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 45E907DF1AC85F6F00541AF9;
 			productRefGroup = 45E907E91AC85F6F00541AF9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				45E907E71AC85F6F00541AF9 /* SwiftMavlink */,
+				45761EFF1B4CBD4D00506E83 /* SwiftMavlink */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		45761EFE1B4CBD4D00506E83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				451991031B4CD04000901BA2 /* ardupilotmega.xml in Resources */,
+				4519910C1B4CD04000901BA2 /* test.xml in Resources */,
+				4519910B1B4CD04000901BA2 /* slugs.xml in Resources */,
+				451991051B4CD04000901BA2 /* autoquad.xml in Resources */,
+				4519910D1B4CD04000901BA2 /* ualberta.xml in Resources */,
+				451991061B4CD04000901BA2 /* common.xml in Resources */,
+				4519910A1B4CD04000901BA2 /* python_array_test.xml in Resources */,
+				451991091B4CD04000901BA2 /* pixhawk.xml in Resources */,
+				451991081B4CD04000901BA2 /* minimal.xml in Resources */,
+				451991071B4CD04000901BA2 /* matrixpilot.xml in Resources */,
+				451991041B4CD04000901BA2 /* ASLUAV.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		45E907E41AC85F6F00541AF9 /* Sources */ = {
+		45761EFB1B4CBD4D00506E83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45A3FA541ACB0D97001EA503 /* MavLink+Convenience.swift in Sources */,
-				45E1EFE71AC9B93500929F06 /* SerialPort.swift in Sources */,
-				45E1EFE91AC9B93500929F06 /* RegularExpression.swift in Sources */,
-				456E6C4C1AC9955200D83D52 /* SerialMain.swift in Sources */,
-				45E1EFE31AC9B93500929F06 /* MavLink.swift in Sources */,
-				45E1EFE41AC9B93500929F06 /* CRC16.swift in Sources */,
-				45E1EFE51AC9B93500929F06 /* DataScanner.swift in Sources */,
-				45E1EFE81AC9B93500929F06 /* SwiftIOKit.swift in Sources */,
-				45E1EFE61AC9B93500929F06 /* Scratch.swift in Sources */,
-				45E1EFE21AC9B93500929F06 /* MavLink+XML.swift in Sources */,
-				45E907EC1AC85F6F00541AF9 /* main.swift in Sources */,
+				45761F1E1B4CBD9400506E83 /* MavLink.swift in Sources */,
+				45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */,
+				45761F301B4CBE8400506E83 /* MavLink+Convenience.swift in Sources */,
+				45761F2F1B4CBE8400506E83 /* MavLink+XML.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		45761F171B4CBD4D00506E83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftMavlink/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = io.schwa.SwiftMavlink;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		45761F181B4CBD4D00506E83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftMavlink/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = io.schwa.SwiftMavlink;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		45E907ED1AC85F6F00541AF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -289,6 +369,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -347,42 +428,23 @@
 			};
 			name = Release;
 		};
-		45E907F01AC85F6F00541AF9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = SwiftMavlink;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		45E907F11AC85F6F00541AF9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = SwiftMavlink;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		45761F1C1B4CBD4D00506E83 /* Build configuration list for PBXNativeTarget "SwiftMavlink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45761F171B4CBD4D00506E83 /* Debug */,
+				45761F181B4CBD4D00506E83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		45E907E31AC85F6F00541AF9 /* Build configuration list for PBXProject "SwiftMavlink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45E907ED1AC85F6F00541AF9 /* Debug */,
 				45E907EE1AC85F6F00541AF9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		45E907EF1AC85F6F00541AF9 /* Build configuration list for PBXNativeTarget "SwiftMavlink" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				45E907F01AC85F6F00541AF9 /* Debug */,
-				45E907F11AC85F6F00541AF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
