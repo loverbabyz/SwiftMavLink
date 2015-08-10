@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		451991031B4CD04000901BA2 /* ardupilotmega.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F021AE851330066EC43 /* ardupilotmega.xml */; };
-		451991041B4CD04000901BA2 /* ASLUAV.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F031AE851330066EC43 /* ASLUAV.xml */; };
-		451991051B4CD04000901BA2 /* autoquad.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F041AE851330066EC43 /* autoquad.xml */; };
-		451991061B4CD04000901BA2 /* common.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F051AE851330066EC43 /* common.xml */; };
-		451991071B4CD04000901BA2 /* matrixpilot.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F061AE851330066EC43 /* matrixpilot.xml */; };
-		451991081B4CD04000901BA2 /* minimal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F071AE851330066EC43 /* minimal.xml */; };
-		451991091B4CD04000901BA2 /* pixhawk.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F081AE851330066EC43 /* pixhawk.xml */; };
-		4519910A1B4CD04000901BA2 /* python_array_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F091AE851330066EC43 /* python_array_test.xml */; };
-		4519910B1B4CD04000901BA2 /* slugs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F0A1AE851330066EC43 /* slugs.xml */; };
-		4519910C1B4CD04000901BA2 /* test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F0B1AE851330066EC43 /* test.xml */; };
-		4519910D1B4CD04000901BA2 /* ualberta.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45CE0F0C1AE851330066EC43 /* ualberta.xml */; };
 		45761F031B4CBD4D00506E83 /* SwiftMavlink.h in Headers */ = {isa = PBXBuildFile; fileRef = 45761F021B4CBD4D00506E83 /* SwiftMavlink.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45761F1E1B4CBD9400506E83 /* MavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* MavLink.swift */; };
 		45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */; };
 		45761F2F1B4CBE8400506E83 /* MavLink+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */; };
 		45761F301B4CBE8400506E83 /* MavLink+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */; };
+		459410361B792160007FFBA0 /* ardupilotmega.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410241B792160007FFBA0 /* ardupilotmega.xml */; };
+		459410371B792160007FFBA0 /* ASLUAV.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410251B792160007FFBA0 /* ASLUAV.xml */; };
+		459410381B792160007FFBA0 /* autoquad.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410261B792160007FFBA0 /* autoquad.xml */; };
+		459410391B792160007FFBA0 /* common.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410271B792160007FFBA0 /* common.xml */; };
+		4594103A1B792160007FFBA0 /* matrixpilot.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410281B792160007FFBA0 /* matrixpilot.xml */; };
+		4594103B1B792160007FFBA0 /* minimal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410291B792160007FFBA0 /* minimal.xml */; };
+		4594103C1B792160007FFBA0 /* pixhawk.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102A1B792160007FFBA0 /* pixhawk.xml */; };
+		4594103D1B792160007FFBA0 /* python_array_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102B1B792160007FFBA0 /* python_array_test.xml */; };
+		4594103E1B792160007FFBA0 /* slugs.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102C1B792160007FFBA0 /* slugs.xml */; };
+		4594103F1B792160007FFBA0 /* test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102D1B792160007FFBA0 /* test.xml */; };
+		459410401B792160007FFBA0 /* ualberta.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102E1B792160007FFBA0 /* ualberta.xml */; };
 		45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +31,17 @@
 		45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMavlink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45761F021B4CBD4D00506E83 /* SwiftMavlink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftMavlink.h; sourceTree = "<group>"; };
 		45761F041B4CBD4D00506E83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		459410241B792160007FFBA0 /* ardupilotmega.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
+		459410251B792160007FFBA0 /* ASLUAV.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ASLUAV.xml; sourceTree = "<group>"; };
+		459410261B792160007FFBA0 /* autoquad.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = autoquad.xml; sourceTree = "<group>"; };
+		459410271B792160007FFBA0 /* common.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
+		459410281B792160007FFBA0 /* matrixpilot.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = matrixpilot.xml; sourceTree = "<group>"; };
+		459410291B792160007FFBA0 /* minimal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
+		4594102A1B792160007FFBA0 /* pixhawk.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
+		4594102B1B792160007FFBA0 /* python_array_test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = python_array_test.xml; sourceTree = "<group>"; };
+		4594102C1B792160007FFBA0 /* slugs.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
+		4594102D1B792160007FFBA0 /* test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
+		4594102E1B792160007FFBA0 /* ualberta.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
 		45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+Convenience.swift"; path = "../MavlinkTest/Mavlink/MavLink+Convenience.swift"; sourceTree = "<group>"; };
 		45B9DE9E1B753460009FD963 /* SwiftIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftIO.framework; sourceTree = "<group>"; };
 		45B9DE9F1B753460009FD963 /* SwiftLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftLogging.framework; sourceTree = "<group>"; };
@@ -39,24 +50,6 @@
 		45B9DEA31B753460009FD963 /* SwiftLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftLogging.framework; sourceTree = "<group>"; };
 		45B9DEA41B753460009FD963 /* SwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftUtilities.framework; sourceTree = "<group>"; };
 		45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavlinkDataScanner.swift; path = ../MavlinkTest/Mavlink/MavlinkDataScanner.swift; sourceTree = "<group>"; };
-		45CE0EFA1AE851330066EC43 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
-		45CE0EFB1AE851330066EC43 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
-		45CE0EFC1AE851330066EC43 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
-		45CE0EFD1AE851330066EC43 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
-		45CE0EFE1AE851330066EC43 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
-		45CE0EFF1AE851330066EC43 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
-		45CE0F001AE851330066EC43 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
-		45CE0F021AE851330066EC43 /* ardupilotmega.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ardupilotmega.xml; sourceTree = "<group>"; };
-		45CE0F031AE851330066EC43 /* ASLUAV.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ASLUAV.xml; sourceTree = "<group>"; };
-		45CE0F041AE851330066EC43 /* autoquad.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = autoquad.xml; sourceTree = "<group>"; };
-		45CE0F051AE851330066EC43 /* common.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = common.xml; sourceTree = "<group>"; };
-		45CE0F061AE851330066EC43 /* matrixpilot.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = matrixpilot.xml; sourceTree = "<group>"; };
-		45CE0F071AE851330066EC43 /* minimal.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = minimal.xml; sourceTree = "<group>"; };
-		45CE0F081AE851330066EC43 /* pixhawk.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pixhawk.xml; sourceTree = "<group>"; };
-		45CE0F091AE851330066EC43 /* python_array_test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = python_array_test.xml; sourceTree = "<group>"; };
-		45CE0F0A1AE851330066EC43 /* slugs.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
-		45CE0F0B1AE851330066EC43 /* test.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
-		45CE0F0C1AE851330066EC43 /* ualberta.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
 		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+XML.swift"; path = "../MavlinkTest/Mavlink/MavLink+XML.swift"; sourceTree = "<group>"; };
 		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavLink.swift; path = ../MavlinkTest/Mavlink/MavLink.swift; sourceTree = "<group>"; };
 		45F181241AC9FF5F00815F08 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
@@ -85,7 +78,7 @@
 		45761F011B4CBD4D00506E83 /* SwiftMavlink */ = {
 			isa = PBXGroup;
 			children = (
-				45CE0EF81AE851330066EC43 /* message_definitions */,
+				4594101A1B792160007FFBA0 /* message_definitions */,
 				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
 				45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */,
 				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
@@ -94,6 +87,32 @@
 				45761F041B4CBD4D00506E83 /* Info.plist */,
 			);
 			path = SwiftMavlink;
+			sourceTree = "<group>";
+		};
+		4594101A1B792160007FFBA0 /* message_definitions */ = {
+			isa = PBXGroup;
+			children = (
+				459410231B792160007FFBA0 /* v1.0 */,
+			);
+			path = message_definitions;
+			sourceTree = "<group>";
+		};
+		459410231B792160007FFBA0 /* v1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				459410241B792160007FFBA0 /* ardupilotmega.xml */,
+				459410251B792160007FFBA0 /* ASLUAV.xml */,
+				459410261B792160007FFBA0 /* autoquad.xml */,
+				459410271B792160007FFBA0 /* common.xml */,
+				459410281B792160007FFBA0 /* matrixpilot.xml */,
+				459410291B792160007FFBA0 /* minimal.xml */,
+				4594102A1B792160007FFBA0 /* pixhawk.xml */,
+				4594102B1B792160007FFBA0 /* python_array_test.xml */,
+				4594102C1B792160007FFBA0 /* slugs.xml */,
+				4594102D1B792160007FFBA0 /* test.xml */,
+				4594102E1B792160007FFBA0 /* ualberta.xml */,
+			);
+			path = v1.0;
 			sourceTree = "<group>";
 		};
 		45B9DE9B1B753460009FD963 /* Carthage */ = {
@@ -131,48 +150,6 @@
 				45B9DEA41B753460009FD963 /* SwiftUtilities.framework */,
 			);
 			path = Mac;
-			sourceTree = "<group>";
-		};
-		45CE0EF81AE851330066EC43 /* message_definitions */ = {
-			isa = PBXGroup;
-			children = (
-				45CE0EF91AE851330066EC43 /* v0.9 */,
-				45CE0F011AE851330066EC43 /* v1.0 */,
-			);
-			name = message_definitions;
-			path = ../message_definitions;
-			sourceTree = "<group>";
-		};
-		45CE0EF91AE851330066EC43 /* v0.9 */ = {
-			isa = PBXGroup;
-			children = (
-				45CE0EFA1AE851330066EC43 /* ardupilotmega.xml */,
-				45CE0EFB1AE851330066EC43 /* common.xml */,
-				45CE0EFC1AE851330066EC43 /* minimal.xml */,
-				45CE0EFD1AE851330066EC43 /* pixhawk.xml */,
-				45CE0EFE1AE851330066EC43 /* slugs.xml */,
-				45CE0EFF1AE851330066EC43 /* test.xml */,
-				45CE0F001AE851330066EC43 /* ualberta.xml */,
-			);
-			path = v0.9;
-			sourceTree = "<group>";
-		};
-		45CE0F011AE851330066EC43 /* v1.0 */ = {
-			isa = PBXGroup;
-			children = (
-				45CE0F021AE851330066EC43 /* ardupilotmega.xml */,
-				45CE0F031AE851330066EC43 /* ASLUAV.xml */,
-				45CE0F041AE851330066EC43 /* autoquad.xml */,
-				45CE0F051AE851330066EC43 /* common.xml */,
-				45CE0F061AE851330066EC43 /* matrixpilot.xml */,
-				45CE0F071AE851330066EC43 /* minimal.xml */,
-				45CE0F081AE851330066EC43 /* pixhawk.xml */,
-				45CE0F091AE851330066EC43 /* python_array_test.xml */,
-				45CE0F0A1AE851330066EC43 /* slugs.xml */,
-				45CE0F0B1AE851330066EC43 /* test.xml */,
-				45CE0F0C1AE851330066EC43 /* ualberta.xml */,
-			);
-			path = v1.0;
 			sourceTree = "<group>";
 		};
 		45E907DF1AC85F6F00541AF9 = {
@@ -264,17 +241,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				451991031B4CD04000901BA2 /* ardupilotmega.xml in Resources */,
-				4519910C1B4CD04000901BA2 /* test.xml in Resources */,
-				4519910B1B4CD04000901BA2 /* slugs.xml in Resources */,
-				451991051B4CD04000901BA2 /* autoquad.xml in Resources */,
-				4519910D1B4CD04000901BA2 /* ualberta.xml in Resources */,
-				451991061B4CD04000901BA2 /* common.xml in Resources */,
-				4519910A1B4CD04000901BA2 /* python_array_test.xml in Resources */,
-				451991091B4CD04000901BA2 /* pixhawk.xml in Resources */,
-				451991081B4CD04000901BA2 /* minimal.xml in Resources */,
-				451991071B4CD04000901BA2 /* matrixpilot.xml in Resources */,
-				451991041B4CD04000901BA2 /* ASLUAV.xml in Resources */,
+				459410401B792160007FFBA0 /* ualberta.xml in Resources */,
+				459410381B792160007FFBA0 /* autoquad.xml in Resources */,
+				4594103D1B792160007FFBA0 /* python_array_test.xml in Resources */,
+				4594103E1B792160007FFBA0 /* slugs.xml in Resources */,
+				459410391B792160007FFBA0 /* common.xml in Resources */,
+				459410371B792160007FFBA0 /* ASLUAV.xml in Resources */,
+				4594103B1B792160007FFBA0 /* minimal.xml in Resources */,
+				4594103C1B792160007FFBA0 /* pixhawk.xml in Resources */,
+				459410361B792160007FFBA0 /* ardupilotmega.xml in Resources */,
+				4594103A1B792160007FFBA0 /* matrixpilot.xml in Resources */,
+				4594103F1B792160007FFBA0 /* test.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
