@@ -286,7 +286,7 @@ public class DefinitionsSuite {
 
     public static var sharedSuite = DefinitionsSuite()
 
-    public func messageDefinitionWithID(messageID:Int) throws -> MessageDefinition? {
+    public func messageDefinitionWithID(messageID:UInt8) throws -> MessageDefinition? {
 
         let bundle = NSBundle(identifier: "io.schwa.SwiftMavlink")!
 
@@ -304,30 +304,26 @@ public class DefinitionsSuite {
             guard let messageNode = nodes.last else {
                 break
             }
-            let messageDefinition = try MessageDefinition(xml:messageNode)
-            return messageDefinition
+            return try MessageDefinition(xml:messageNode)
         }
 
-    return nil
+        return nil
     }
 }
 
 // MARK: -
 
 public struct Message {
+    public let sequence:UInt8
+    public let systemID:UInt8
+    public let componentID:UInt8
+    public let messageID:UInt8
+    public let payload:Buffer <Void>
+    public let crc:UInt16
     public let definition:MessageDefinition?
-    public let payloadLength:UInt8!
-    public let sequence:UInt8!
-    public let systemID:UInt8!
-    public let componentID:UInt8!
-    public let messageID:UInt8!
-    public let payload:Buffer <Void>!
-    public let crc:UInt16?
 
     public var length:Int {
-        get {
-            return 6 + payload.bufferPointer.count + 2
-        }
+        return 6 + payload.bufferPointer.count + 2
     }
 }
 
@@ -341,8 +337,7 @@ public extension Message {
         
         let scanner = DataScanner(buffer: buffer)
         
-        let header = try scanner.scan(0xFE)
-        guard header == true else {
+        guard try scanner.scan(0xFE) == true else {
             throw Error.generic("No header found.")
         }
 
@@ -354,39 +349,22 @@ public extension Message {
             throw Error.generic("Buffer size (\(buffer.count)) doesn't agree with payload length (\(payloadLength + 8)): \(buffer.asHex)")
         }
 
-        guard
-            let sequence:UInt8 = try scanner.scan(),
-            let systemID:UInt8 = try scanner.scan(),
-            let componentID:UInt8 = try scanner.scan(),
-            let messageID:UInt8 = try scanner.scan(),
-            let payload = try scanner.scanBuffer(Int(payloadLength)),
-            let crc:UInt16 = try scanner.scan()
-        else {
-            throw Error.generic("Could not scan message.")
-        }
+        sequence = try scanner.scan()
+        systemID = try scanner.scan()
+        componentID = try scanner.scan()
+        messageID = try scanner.scan()
+        payload = Buffer(bufferPointer:try scanner.scan(Int(payloadLength)))
+        crc = try scanner.scan()
+        definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(messageID)
 
-        self.payloadLength = payloadLength
-        self.sequence = sequence
-        self.systemID = systemID
-        self.componentID = componentID
-        self.messageID = messageID
-        self.payload = Buffer(bufferPointer:payload)
-        self.crc = crc
-
-        if let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID)) {
-            let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
+        if let definition = definition {
+            let computedCRC = try Message.computeCRC(buffer, seed:definition.seed)
             if computedCRC != crc {
-                print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
                 if skipCRC == false {
                     throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
                 }
             }
-            self.definition = definition
         }
-        else {
-            self.definition = nil
-        }
-
     }
 
     public func valueAtOffset <T> (offset  offset:Int, size:Int) throws -> T {
@@ -397,28 +375,26 @@ public extension Message {
     }
 
     public var values:[String:Any] {
-        if let definition = definition {
-            var values:[String:Any] = [:]
-            let payloadScanner = DataScanner(buffer: payload!.bufferPointer)
-            for field in definition.fields {
-                let value:Any? = try! payloadScanner.scan(field.type, count:field.count)
-                values[field.name] = value
-            }
-//            assert(payloadScanner.atEnd)
-            return values
-        }
-        else {
+        guard let definition = definition else {
             return [:]
         }
+
+        var values:[String:Any] = [:]
+        let payloadScanner = DataScanner(buffer: payload.bufferPointer)
+        for field in definition.fields {
+            let value:Any? = try! payloadScanner.scan(field.type, count:field.count)
+            values[field.name] = value
+        }
+
+        return values
     }
     
-    public static func computeCRC(buffer:UnsafeBufferPointer <Void>, seed:UInt8) -> UInt16! {
+    public static func computeCRC(buffer:UnsafeBufferPointer <Void>, seed:UInt8) throws -> UInt16! {
 
         let buffer:UnsafeBufferPointer <UInt8> = buffer.toUnsafeBufferPointer()
 
-        if buffer.count < 4 {
-            print("Buffer too small to CRC")
-            return nil
+        guard buffer.count >= 4 else {
+            throw Error.generic("Buffer too small to CRC")
         }
 
         let length = buffer[1]
@@ -433,12 +409,8 @@ public extension Message {
 
 extension Message: CustomStringConvertible {
     public var description: String {
-        get {
-            var s = "Message(payloadLength:\(payloadLength), sequence:\(sequence), systemID:\(systemID), componentID:\(componentID), messageID:\(messageID)"
-            if let crc = crc {
-                s +=  ", crc: 0x\(crc.asHex))"
-            }
-            return s
-        }
+        var s = "Message(sequence:\(sequence), systemID:\(systemID), componentID:\(componentID), messageID:\(messageID)"
+        s +=  ", crc: 0x\(crc.asHex))"
+        return s
     }
 }

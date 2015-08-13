@@ -14,12 +14,21 @@ import SwiftUtilities
 
 public extension MessageDefinition {
     init(xml element:NSXMLElement) throws {
-        let id = Int(element.attributeForName("id")!.stringValue!)!
-        let name = element.attributeForName("name")!.stringValue!
-        let fieldNodes = try! element.nodesForXPath("field")
 
-        let fields = (fieldNodes as? [NSXMLElement])!.enumerate().map() {
-            (index:Int, element:NSXMLElement) -> FieldDefinition in
+        guard let string_id = element.attributeForName("id")?.stringValue, let id = Int(string_id) else {
+            throw Error.generic("No id")
+        }
+
+        guard let name = element.attributeForName("name")?.stringValue else {
+            throw Error.generic("No name")
+        }
+        
+        guard let fieldNodes = try element.nodesForXPath("field") as? [NSXMLElement] else {
+            throw Error.generic("No fields")
+        }
+
+        let fields = fieldNodes.enumerate().map() {
+            (index, element) -> FieldDefinition in
             return try! FieldDefinition(xml:element, index:index)
         }
 
