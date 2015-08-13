@@ -286,7 +286,7 @@ public class DefinitionsSuite {
 
     public static var sharedSuite = DefinitionsSuite()
 
-    public func messageDefinitionWithID(messageID:Int) throws -> MessageDefinition {
+    public func messageDefinitionWithID(messageID:Int) throws -> MessageDefinition? {
 
         let bundle = NSBundle(identifier: "io.schwa.SwiftMavlink")!
 
@@ -308,7 +308,7 @@ public class DefinitionsSuite {
             return messageDefinition
         }
 
-    throw Error.generic("WARNING: No message definition found for  id \(messageID)")
+    return nil
     }
 }
 
@@ -365,15 +365,6 @@ public extension Message {
             throw Error.generic("Could not scan message.")
         }
 
-        let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
-        let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
-        if computedCRC != crc {
-            print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
-            if skipCRC == false {
-                throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
-            }
-        }
-        self.definition = definition
         self.payloadLength = payloadLength
         self.sequence = sequence
         self.systemID = systemID
@@ -381,6 +372,20 @@ public extension Message {
         self.messageID = messageID
         self.payload = Buffer(bufferPointer:payload)
         self.crc = crc
+
+        if let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID)) {
+            let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
+            if computedCRC != crc {
+                print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+                if skipCRC == false {
+                    throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+                }
+            }
+            self.definition = definition
+        }
+        else {
+            self.definition = nil
+        }
 
     }
 
