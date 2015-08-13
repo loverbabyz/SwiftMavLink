@@ -115,14 +115,10 @@ public func <(lhs:FieldDefinition, rhs:FieldDefinition) -> Bool {
 
 extension FieldDefinition: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
-        get {
-            return name
-        }
+        return name
     }
     public var debugDescription: String {
-        get {
-            return "FieldDefinition(index:\(index), type:\(type), count:\(count), name:\(name), offset:\(offset))"
-        }
+        return "FieldDefinition(index:\(index), type:\(type), count:\(count), name:\(name), offset:\(offset))"
     }
 }
 
@@ -155,7 +151,7 @@ public enum FieldType {
     case float
     case double
 
-    public init?(string:String) {
+    public init(string:String) throws {
         switch string {
             case "char":
                 self = .char
@@ -180,9 +176,7 @@ public enum FieldType {
             case "double":
                 self = .double
             default:
-                print("Unknown field type: \(string)")
-                self = .uint8_t
-                return nil
+                throw Error.generic("Unknown field type: \(string)")
         }
     }
 
@@ -292,36 +286,29 @@ public class DefinitionsSuite {
 
     public static var sharedSuite = DefinitionsSuite()
 
-    public func messageDefinitionWithID(messageID:Int) -> MessageDefinition? {
+    public func messageDefinitionWithID(messageID:Int) throws -> MessageDefinition {
 
         let bundle = NSBundle(identifier: "io.schwa.SwiftMavlink")!
 
-
         let commonURLs = [
-
             bundle.URLForResource("common", withExtension: "xml")!,
             bundle.URLForResource("ardupilotmega", withExtension: "xml")!,
         ]
 
-
-
         for commonURL in commonURLs {
-            let xmlDocument: NSXMLDocument?
-            do {
-                xmlDocument = try NSXMLDocument(contentsOfURL: commonURL, options: 0)
-            } catch _ {
-                xmlDocument = nil
-            }
+            let xmlDocument = try NSXMLDocument(contentsOfURL: commonURL, options: 0)
             let xpath = "/mavlink/messages/message[@id=\(messageID)]"
-            let nodes = try! xmlDocument!.nodesForXPath(xpath) as? [NSXMLElement]
-            if let messageNode = nodes?.last {
-                let messageDefinition = MessageDefinition(xml:messageNode)
-                return messageDefinition
+            guard let nodes = try xmlDocument.nodesForXPath(xpath) as? [NSXMLElement] else {
+                break
             }
+            guard let messageNode = nodes.last else {
+                break
+            }
+            let messageDefinition = try MessageDefinition(xml:messageNode)
+            return messageDefinition
         }
 
-//    print("WARNING: No message definition found for  id \(messageID)")
-    return nil
+    throw Error.generic("WARNING: No message definition found for  id \(messageID)")
     }
 }
 
@@ -346,46 +333,42 @@ public struct Message {
 
 public extension Message {
     
-    public init?(buffer:UnsafeBufferPointer <UInt8>, skipCRC:Bool = false) {
+    public init(buffer:UnsafeBufferPointer <UInt8>, skipCRC:Bool = false) throws {
         
-        if buffer.count < 8 {
-            print("Buffer too small")
-            return nil
+        guard buffer.count >= 8 else {
+            throw Error.generic("Buffer too small")
         }
         
         let scanner = DataScanner(buffer: buffer)
         
         let header = scanner.scan(0xFE)
-        if header == false {
-            return nil
-        }
-        let payloadLength:UInt8? = scanner.scan()
-        
-        if let payloadLength = payloadLength {
-            if buffer.count < 8 + Int(payloadLength) {
-                print("Buffer size (\(buffer.count)) doesn't agree with payload length (\(payloadLength + 8)): \(buffer.asHex)")
-                return nil
-            }
+        guard header == true else {
+            throw Error.generic("No header found.")
         }
 
-        
+        guard let payloadLength:UInt8 = scanner.scan() else {
+            throw Error.generic("No payload length found.")
+        }
+
+        guard buffer.count >= 8 + Int(payloadLength) else {
+            throw Error.generic("Buffer size (\(buffer.count)) doesn't agree with payload length (\(payloadLength + 8)): \(buffer.asHex)")
+        }
+
         let sequence:UInt8? = scanner.scan()
         let systemID:UInt8? = scanner.scan()
         let componentID:UInt8? = scanner.scan()
         let messageID:UInt8? = scanner.scan()
-        let payload = scanner.scanBuffer(Int(payloadLength!))
+        let payload = scanner.scanBuffer(Int(payloadLength))
         let crc:UInt16? = scanner.scan()
 //        assert(scanner.atEnd)
         
-        if let payloadLength = payloadLength, let sequence = sequence, let systemID = systemID, let componentID = componentID, let messageID = messageID, let payload = payload, let crc = crc {
-            let definition = DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
-            if let definition = definition {
-                let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
-                if computedCRC != crc {
-                    print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
-                    if skipCRC == false {
-                        return nil
-                    }
+        if let sequence = sequence, let systemID = systemID, let componentID = componentID, let messageID = messageID, let payload = payload, let crc = crc {
+            let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
+            let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
+            if computedCRC != crc {
+                print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+                if skipCRC == false {
+                    throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
                 }
             }
             self.definition = definition
@@ -400,17 +383,16 @@ public extension Message {
 
         }
 
-        print("Could not scan message")
-        return nil
+        throw Error.generic("Could not scan message")
     }
-    
-    public func valueAtOffset <T> (offset  offset:Int, size:Int) -> T? {
+
+    public func valueAtOffset <T> (offset  offset:Int, size:Int) throws -> T {
         assert(size == sizeof(T))
         let ptr = payload.bufferPointer.baseAddress.advancedBy(offset)
         let typedPtr = UnsafePointer <T> (ptr)
         return typedPtr.memory
     }
-    
+
     public var values:[String:Any] {
         if let definition = definition {
             var values:[String:Any] = [:]

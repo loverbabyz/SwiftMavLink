@@ -9,11 +9,9 @@
 import SwiftUtilities
 
 public class MavlinkDataScanner: DataScanner {
-    public func scan() -> Message? {
-        if let message = Message(buffer: remaining, skipCRC:true) {
-            current += message.length
-            return message
-        }
-        return nil
+    public func scan() throws -> Message? {
+        let message = try Message(buffer: remaining, skipCRC:true)
+        current += message.length
+        return message
     }
 }

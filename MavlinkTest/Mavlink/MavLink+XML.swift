@@ -13,14 +13,14 @@ import SwiftUtilities
 // MARK: -
 
 public extension MessageDefinition {
-    init?(xml element:NSXMLElement) {
+    init(xml element:NSXMLElement) throws {
         let id = Int(element.attributeForName("id")!.stringValue!)!
         let name = element.attributeForName("name")!.stringValue!
         let fieldNodes = try! element.nodesForXPath("field")
 
         let fields = (fieldNodes as? [NSXMLElement])!.enumerate().map() {
             (index:Int, element:NSXMLElement) -> FieldDefinition in
-            return FieldDefinition(xml:element, index:index)!
+            return try! FieldDefinition(xml:element, index:index)
         }
 
         self.init(id:id, name:name, fields:fields)
@@ -33,29 +33,35 @@ public extension FieldDefinition {
 
     static let expression = try! RegularExpression("([^\\[]+)(?:\\[(.+)\\])?")
 
-    static func fromXMLElement(element:NSXMLElement, index:Int) -> FieldDefinition? {
-        if let typeString = element.attributeForName("type")?.stringValue {
-            if let match = expression.match(typeString) {
-                let typeName = match.strings[1]!
-                let type = FieldType(string:typeName)
-                let name = element.attributeForName("name")?.stringValue
-                let fieldDescription = element.stringValue
-
-                if let type = type, let name = name, let fieldDescription = fieldDescription {
-                    let count:Int? = match.strings[2]?.toInt()
-                    return FieldDefinition(index:index, type:type, count:count, name:name, fieldDescription:fieldDescription, offset:nil)
-                }
-            }
+    static func fromXMLElement(element:NSXMLElement, index:Int) throws -> FieldDefinition {
+        guard let typeString = element.attributeForName("type")?.stringValue else {
+            throw Error.generic("Could not get type from field definition.")
         }
-        return nil
+
+        guard let match = expression.match(typeString) else {
+            throw Error.generic("Type definition does not match regex.")
+        }
+
+        guard let typeName = match.strings[1] else {
+            throw Error.generic("Could not find field description (probably a bad regex).")
+        }
+
+        let type = try FieldType(string:typeName)
+
+        guard let fieldDescription = element.stringValue else {
+            throw Error.generic("Could not get field description.")
+        }
+
+        guard let name = element.attributeForName("name")?.stringValue else {
+            throw Error.generic("Could not get name from field definition.")
+        }
+
+        let count:Int? = match.strings[2]?.toInt()
+        return FieldDefinition(index:index, type:type, count:count, name:name, fieldDescription:fieldDescription, offset:nil)
+
     }
 
-    init?(xml element:NSXMLElement, index:Int) {
-        if let definition = FieldDefinition.fromXMLElement(element, index:index) {
-            self = definition
-        }
-        else {
-            return nil
-        }
+    init(xml element:NSXMLElement, index:Int) throws {
+        self = try FieldDefinition.fromXMLElement(element, index:index)
     }
 }
