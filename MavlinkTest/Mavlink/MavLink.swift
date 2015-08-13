@@ -246,11 +246,11 @@ extension FieldType: CustomStringConvertible {
 // MARK: -
 
 public extension DataScanner {
-    func scan(type:FieldType, count:Int?) -> Any? {
+    func scan(type:FieldType, count:Int?) throws -> Any? {
         switch type {
             case .char:
                 let count = count ?? 1
-                let string:String? = scanString(count)
+                let string:String? = try scanString(count)
                 return string
             case .uint8_t:
                 assert(count == nil)
@@ -412,20 +412,18 @@ public extension Message {
     }
     
     public var values:[String:Any] {
-        get {
-            if let definition = definition {
-                var values:[String:Any] = [:]
-                let payloadScanner = DataScanner(buffer: payload!.bufferPointer)
-                for field in definition.fields {
-                    let value:Any? = payloadScanner.scan(field.type, count:field.count)
-                    values[field.name] = value
-                }
-    //            assert(payloadScanner.atEnd)
-                return values
+        if let definition = definition {
+            var values:[String:Any] = [:]
+            let payloadScanner = DataScanner(buffer: payload!.bufferPointer)
+            for field in definition.fields {
+                let value:Any? = try! payloadScanner.scan(field.type, count:field.count)
+                values[field.name] = value
             }
-            else {
-                return [:]
-            }
+//            assert(payloadScanner.atEnd)
+            return values
+        }
+        else {
+            return [:]
         }
     }
     
