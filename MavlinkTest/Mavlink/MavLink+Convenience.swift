@@ -14,7 +14,7 @@ extension Message {
 
     init(hexString:String, skipCRC:Bool = false) throws {
         let d = try NSData(hexString: hexString)
-        let buffer:UnsafeBufferPointer <UInt8> = d.buffer.toUnsafeBufferPointer()
+        let buffer:UnsafeBufferPointer <Void> = d.buffer.toUnsafeBufferPointer()
         try self.init(buffer:buffer, skipCRC:skipCRC)
     }
 }

@@ -248,34 +248,34 @@ public extension DataScanner {
                 return string
             case .uint8_t:
                 assert(count == nil)
-                return scan() as UInt8?
+                return try scan() as UInt8?
             case .int8_t:
                 assert(count == nil)
-                return scan() as Int8?
+                return try scan() as Int8?
             case .uint16_t:
                 assert(count == nil)
-                return scan() as UInt16?
+                return try scan() as UInt16?
             case .int16_t:
                 assert(count == nil)
-                return scan() as Int16?
+                return try scan() as Int16?
             case .uint32_t:
                 assert(count == nil)
-                return scan() as UInt32?
+                return try scan() as UInt32?
             case .int32_t:
                 assert(count == nil)
-                return scan() as Int32?
+                return try scan() as Int32?
             case .uint64_t:
                 assert(count == nil)
-                return scan() as UInt64?
+                return try scan() as UInt64?
             case .int64_t:
                 assert(count == nil)
-                return scan() as Int64?
+                return try scan() as Int64?
             case .float:
                 assert(count == nil)
-                return scan() as Float?
+                return try scan() as Float?
             case .double:
                 assert(count == nil)
-                return scan() as Double?
+                return try scan() as Double?
         }
     }
 }
@@ -321,7 +321,7 @@ public struct Message {
     public let systemID:UInt8!
     public let componentID:UInt8!
     public let messageID:UInt8!
-    public let payload:Buffer <UInt8>!
+    public let payload:Buffer <Void>!
     public let crc:UInt16?
 
     public var length:Int {
@@ -333,7 +333,7 @@ public struct Message {
 
 public extension Message {
     
-    public init(buffer:UnsafeBufferPointer <UInt8>, skipCRC:Bool = false) throws {
+    public init(buffer:UnsafeBufferPointer <Void>, skipCRC:Bool = false) throws {
         
         guard buffer.count >= 8 else {
             throw Error.generic("Buffer too small")
@@ -341,12 +341,12 @@ public extension Message {
         
         let scanner = DataScanner(buffer: buffer)
         
-        let header = scanner.scan(0xFE)
+        let header = try scanner.scan(0xFE)
         guard header == true else {
             throw Error.generic("No header found.")
         }
 
-        guard let payloadLength:UInt8 = scanner.scan() else {
+        guard let payloadLength:UInt8 = try scanner.scan() else {
             throw Error.generic("No payload length found.")
         }
 
@@ -354,36 +354,34 @@ public extension Message {
             throw Error.generic("Buffer size (\(buffer.count)) doesn't agree with payload length (\(payloadLength + 8)): \(buffer.asHex)")
         }
 
-        let sequence:UInt8? = scanner.scan()
-        let systemID:UInt8? = scanner.scan()
-        let componentID:UInt8? = scanner.scan()
-        let messageID:UInt8? = scanner.scan()
-        let payload = scanner.scanBuffer(Int(payloadLength))
-        let crc:UInt16? = scanner.scan()
-//        assert(scanner.atEnd)
-        
-        if let sequence = sequence, let systemID = systemID, let componentID = componentID, let messageID = messageID, let payload = payload, let crc = crc {
-            let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
-            let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
-            if computedCRC != crc {
-                print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
-                if skipCRC == false {
-                    throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
-                }
-            }
-            self.definition = definition
-            self.payloadLength = payloadLength
-            self.sequence = sequence
-            self.systemID = systemID
-            self.componentID = componentID
-            self.messageID = messageID
-            self.payload = Buffer(bufferPointer:payload)
-            self.crc = crc
-            return
-
+        guard
+            let sequence:UInt8 = try scanner.scan(),
+            let systemID:UInt8 = try scanner.scan(),
+            let componentID:UInt8 = try scanner.scan(),
+            let messageID:UInt8 = try scanner.scan(),
+            let payload = try scanner.scanBuffer(Int(payloadLength)),
+            let crc:UInt16 = try scanner.scan()
+        else {
+            throw Error.generic("Could not scan message.")
         }
 
-        throw Error.generic("Could not scan message")
+        let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(Int(messageID))
+        let computedCRC = Message.computeCRC(buffer, seed:definition.seed)
+        if computedCRC != crc {
+            print("WARNING: Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+            if skipCRC == false {
+                throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+            }
+        }
+        self.definition = definition
+        self.payloadLength = payloadLength
+        self.sequence = sequence
+        self.systemID = systemID
+        self.componentID = componentID
+        self.messageID = messageID
+        self.payload = Buffer(bufferPointer:payload)
+        self.crc = crc
+
     }
 
     public func valueAtOffset <T> (offset  offset:Int, size:Int) throws -> T {
@@ -409,7 +407,10 @@ public extension Message {
         }
     }
     
-    public static func computeCRC(buffer:UnsafeBufferPointer <UInt8>, seed:UInt8) -> UInt16! {
+    public static func computeCRC(buffer:UnsafeBufferPointer <Void>, seed:UInt8) -> UInt16! {
+
+        let buffer:UnsafeBufferPointer <UInt8> = buffer.toUnsafeBufferPointer()
+
         if buffer.count < 4 {
             print("Buffer too small to CRC")
             return nil
