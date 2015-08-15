@@ -1,4 +1,4 @@
-github "schwa/SwiftIO" "jwight/Swift2"
-github "schwa/SwiftUtilities" "jwight/Swift2"
-github "schwa/SwiftLogging" "jwight/Swift2"
+github "schwa/SwiftIO" "develop"
+github "schwa/SwiftUtilities" "develop"
+github "schwa/SwiftLogging" "develop"
 
