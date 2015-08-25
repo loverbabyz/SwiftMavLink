@@ -318,12 +318,12 @@ public struct Message {
     public let systemID:UInt8
     public let componentID:UInt8
     public let messageID:UInt8
-    public let payload:Buffer <Void>
+    public let payload:DispatchData <Void>
     public let crc:UInt16
     public let definition:MessageDefinition?
 
     public var length:Int {
-        return 6 + payload.bufferPointer.count + 2
+        return 6 + payload.count + 2
     }
 }
 
@@ -353,7 +353,7 @@ public extension Message {
         systemID = try scanner.scan()
         componentID = try scanner.scan()
         messageID = try scanner.scan()
-        payload = Buffer(bufferPointer:try scanner.scan(Int(payloadLength)))
+        payload = try scanner.scan(Int(payloadLength))!
         crc = try scanner.scan()
         definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(messageID)
 
@@ -367,12 +367,12 @@ public extension Message {
         }
     }
 
-    public func valueAtOffset <T> (offset  offset:Int, size:Int) throws -> T {
-        assert(size == sizeof(T))
-        let ptr = payload.bufferPointer.baseAddress.advancedBy(offset)
-        let typedPtr = UnsafePointer <T> (ptr)
-        return typedPtr.memory
-    }
+//    public func valueAtOffset <T> (offset offset:Int, size:Int) throws -> T {
+//        assert(size == sizeof(T))
+//        let ptr = payload.bufferPointer.baseAddress.advancedBy(offset)
+//        let typedPtr = UnsafePointer <T> (ptr)
+//        return typedPtr.memory
+//    }
 
     public var values:[String:Any] {
         guard let definition = definition else {
@@ -380,11 +380,16 @@ public extension Message {
         }
 
         var values:[String:Any] = [:]
-        let payloadScanner = DataScanner(buffer: payload.bufferPointer)
-        for field in definition.fields {
-            let value:Any? = try! payloadScanner.scan(field.type, count:field.count)
-            values[field.name] = value
+
+        payload.map() {
+            (_, buffer) in
+            let payloadScanner = DataScanner(buffer: buffer)
+            for field in definition.fields {
+                let value:Any? = try! payloadScanner.scan(field.type, count:field.count)
+                values[field.name] = value
+            }
         }
+
 
         return values
     }
@@ -412,5 +417,19 @@ extension Message: CustomStringConvertible {
         var s = "Message(sequence:\(sequence), systemID:\(systemID), componentID:\(componentID), messageID:\(messageID)"
         s +=  ", crc: 0x\(crc.asHex))"
         return s
+    }
+}
+
+
+
+public extension DataScanner {
+
+    func scan(count: Int) throws -> DispatchData <Void>? {
+        if remainingSize < count {
+            return nil
+        }
+        let scannedBuffer = UnsafeBufferPointer <Void> (start: buffer.baseAddress.advancedBy(current), count: count)
+        current = current.advancedBy(count)
+        return DispatchData <Void> (buffer:scannedBuffer)
     }
 }
