@@ -18,9 +18,9 @@ public extension DataScanner {
 
 public extension Message {
 
-    static func messagesFromBuffer(buffer:Buffer <Void>) throws -> [Message] {
+    static func messagesFromBuffer(buffer:UnsafeBufferPointer <Void>) throws -> [Message] {
         var messages:[Message] = []
-        let scanner = DataScanner(buffer: buffer.bufferPointer.toUnsafeBufferPointer())
+        let scanner = DataScanner(buffer: buffer)
         while scanner.atEnd == false {
             if let _ = try scanner.scanUpTo(0xFE) {
         //        print("Skipping: \(junk.asHex)")
