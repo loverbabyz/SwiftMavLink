@@ -346,7 +346,7 @@ public extension Message {
         }
 
         guard buffer.count >= 8 + Int(payloadLength) else {
-            throw Error.generic("Buffer size (\(buffer.count)) doesn't agree with payload length (\(payloadLength + 8)): \(buffer.asHex)")
+            throw Error.generic("Buffer size (\(buffer.count)) doesn't agree with payload length (\(payloadLength + 8)): \(try? buffer.toHex())")
         }
 
         sequence = try scanner.scan()
@@ -361,7 +361,7 @@ public extension Message {
             let computedCRC = try Message.computeCRC(buffer, seed:definition.seed)
             if computedCRC != crc {
                 if skipCRC == false {
-                    throw Error.generic("Computed CRC (\(computedCRC.asHex)) doesn't agree with (\(crc.asHex))")
+                    throw Error.generic("Computed CRC (\(try? computedCRC.toHex())) doesn't agree with (\(try? crc.toHex()))")
                 }
             }
         }
@@ -381,7 +381,7 @@ public extension Message {
 
         var values:[String:Any] = [:]
 
-        payload.map() {
+        payload.createMap() {
             (_, buffer) in
             let payloadScanner = DataScanner(buffer: buffer)
             for field in definition.fields {
@@ -415,7 +415,7 @@ public extension Message {
 extension Message: CustomStringConvertible {
     public var description: String {
         var s = "Message(sequence:\(sequence), systemID:\(systemID), componentID:\(componentID), messageID:\(messageID)"
-        s +=  ", crc: 0x\(crc.asHex))"
+        s +=  ", crc: 0x\(try? crc.toHex()))"
         return s
     }
 }

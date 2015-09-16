@@ -65,7 +65,7 @@ public extension FieldDefinition {
             throw Error.generic("Could not get name from field definition.")
         }
 
-        let count:Int? = match.strings[2]?.toInt()
+        let count:Int? = match.strings[2] != nil ? Int(match.strings[2]!) : nil
         return FieldDefinition(index:index, type:type, count:count, name:name, fieldDescription:fieldDescription, offset:nil)
 
     }

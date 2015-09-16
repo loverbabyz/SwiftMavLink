@@ -11,10 +11,9 @@ import Foundation
 import SwiftUtilities
 
 extension Message {
-
     init(hexString:String, skipCRC:Bool = false) throws {
-        let d = try NSData(hexString: hexString)
-        let buffer:UnsafeBufferPointer <Void> = d.buffer.toUnsafeBufferPointer()
+        let d = try NSData.decodeFromString(hexString, base: 16)
+        let buffer = UnsafeBufferPointer <Void> (start: d.bytes, count: d.length)
         try self.init(buffer:buffer, skipCRC:skipCRC)
     }
 }
