@@ -24,6 +24,7 @@
 		4594103F1B792160007FFBA0 /* test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102D1B792160007FFBA0 /* test.xml */; };
 		459410401B792160007FFBA0 /* ualberta.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102E1B792160007FFBA0 /* ualberta.xml */; };
 		45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
+		45EF3ED11BAE117F004BB635 /* MavlinkDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3ED01BAE117F004BB635 /* MavlinkDefinitions.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavlinkDataScanner.swift; path = ../MavlinkTest/Mavlink/MavlinkDataScanner.swift; sourceTree = "<group>"; };
 		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+XML.swift"; path = "../MavlinkTest/Mavlink/MavLink+XML.swift"; sourceTree = "<group>"; };
 		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavLink.swift; path = ../MavlinkTest/Mavlink/MavLink.swift; sourceTree = "<group>"; };
+		45EF3ED01BAE117F004BB635 /* MavlinkDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MavlinkDefinitions.swift; sourceTree = "<group>"; };
 		45F181241AC9FF5F00815F08 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
 				45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */,
 				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
+				45EF3ED01BAE117F004BB635 /* MavlinkDefinitions.swift */,
 				45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */,
 				45761F021B4CBD4D00506E83 /* SwiftMavlink.h */,
 				45761F041B4CBD4D00506E83 /* Info.plist */,
@@ -264,6 +267,7 @@
 			files = (
 				45761F1E1B4CBD9400506E83 /* MavLink.swift in Sources */,
 				45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */,
+				45EF3ED11BAE117F004BB635 /* MavlinkDefinitions.swift in Sources */,
 				45761F301B4CBE8400506E83 /* MavLink+Convenience.swift in Sources */,
 				45761F2F1B4CBE8400506E83 /* MavLink+XML.swift in Sources */,
 			);
