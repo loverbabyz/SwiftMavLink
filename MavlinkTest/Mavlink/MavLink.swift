@@ -286,7 +286,19 @@ public class DefinitionsSuite {
 
     public static var sharedSuite = DefinitionsSuite()
 
+    var cachedDefinitions:[UInt8:MessageDefinition] = [:]
+    var lock = NSLock()
+
     public func messageDefinitionWithID(messageID:UInt8) throws -> MessageDefinition? {
+
+        lock.lock()
+        defer {
+            lock.unlock()
+        }
+
+        if let definition = cachedDefinitions[messageID] {
+            return definition
+        }
 
         let bundle = NSBundle(identifier: "io.schwa.SwiftMavlink")!
 
@@ -304,7 +316,9 @@ public class DefinitionsSuite {
             guard let messageNode = nodes.last else {
                 break
             }
-            return try MessageDefinition(xml:messageNode)
+            let definition = try MessageDefinition(xml:messageNode)
+            cachedDefinitions[messageID] = definition
+            return definition
         }
 
         return nil
