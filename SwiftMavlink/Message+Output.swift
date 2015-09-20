@@ -44,6 +44,10 @@ public extension Message {
             try data.append(field, value: value)
         }
 
+        guard data.length < 255 else {
+            throw Error.generic("Too much data")
+        }
+
         let body = DispatchData <Void> (start: data.bytes, count:data.length)
         try self.init(sequence: sequence, systemID: systemID, componentID: componentID, definition: definition, body: body)
     }
