@@ -27,12 +27,12 @@ public extension MessageDefinition {
             throw Error.generic("No fields")
         }
 
-        let fields = fieldNodes.enumerate().map() {
+        let fields = try fieldNodes.enumerate().map() {
             (index, element) -> FieldDefinition in
-            return try! FieldDefinition(xml:element, index:index)
+            return try FieldDefinition(xml:element, index:index)
         }
 
-        self.init(id:id, name:name, fields:fields)
+        self.init(id:UInt8(id), name:name, fields:fields)
     }
 }
 

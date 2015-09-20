@@ -11,13 +11,13 @@ import Foundation
 import SwiftUtilities
 
 public struct MessageDefinition {
-    public let id:Int
-    public let name:String
-    public let fields:[FieldDefinition]
-    public let fieldsByName:[String:FieldDefinition]
-    public let seed:UInt8
+    public let id: UInt8
+    public let name: String
+    public let fields: [FieldDefinition]
+    public let fieldsByName: [String:FieldDefinition]
+    public let seed: UInt8
 
-    public init(id:Int, name:String, fields:[FieldDefinition]) {
+    public init(id: UInt8, name: String, fields: [FieldDefinition]) {
         self.id = id
         self.name = name
 
@@ -28,15 +28,14 @@ public struct MessageDefinition {
             return field
         }
 
-        var fieldsByName:[String:FieldDefinition] = [:]
+        var fieldsByName: [String:FieldDefinition] = [:]
         for f in self.fields {
             fieldsByName[f.name] = f
         }
+
         self.fieldsByName = fieldsByName
 
-        seed = MessageDefinition.computeSeed(name:name, fields:self.fields)
-//        let s = MessageDefinition.stringForSeed(name:name, fields:self.fields)
-//        print("Seed: \(seed) \"\(s)\"")
+        seed = MessageDefinition.computeSeed(name: name, fields: self.fields)
     }
 
     static func computeSeed(name name:String, fields:[FieldDefinition]) -> UInt8 {
@@ -51,32 +50,11 @@ public struct MessageDefinition {
         }
         return UInt8((crc.crc & 0xFF) ^ (crc.crc >> 8))
     }
-
-    public var stringForSeed:String {
-        get {
-            return MessageDefinition.stringForSeed(name:name, fields:fields)
-        }
-    }
-
-    static func stringForSeed(name  name:String, fields:[FieldDefinition]) -> String {
-        var s = ""
-        s += (name + " ")
-        for f in fields {
-            s += (f.type.name + " ")
-            s += (f.name + " ")
-            if let count = f.count {
-                s += ("\(count)")
-            }
-        }
-        return s
-    }
 }
 
 extension MessageDefinition: CustomStringConvertible {
     public var description: String {
-        get {
-            return "MessageDefinition(id:\(id), name:\(name), fields:\(fields), seed:\(seed))"
-        }
+        return "MessageDefinition(id:\(id), name:\(name), fields:\(fields), seed:\(seed))"
     }
 }
 
@@ -88,7 +66,7 @@ public struct FieldDefinition {
     public let count:Int?
     public let name:String
     public let fieldDescription:String
-    public var offset:Int!
+    public let offset:Int?
 }
 
 extension FieldDefinition: Equatable {
@@ -137,7 +115,6 @@ extension FieldDefinition: CustomStringConvertible, CustomDebugStringConvertible
 //# MAVLINK_TYPE_FLOAT    = 9
 //# MAVLINK_TYPE_DOUBLE   = 10
 
-
 public enum FieldType {
     case char
     case uint8_t
@@ -181,57 +158,53 @@ public enum FieldType {
     }
 
     public var name:String {
-        get {
-            switch self {
-                case .char:
-                    return "char"
-                case .uint8_t:
-                    return "uint8_t"
-                case .int8_t:
-                    return "int8_t"
-                case .uint16_t:
-                    return "uint16_t"
-                case .int16_t:
-                    return "int16_t"
-                case .uint32_t:
-                    return "uint32_t"
-                case .int32_t:
-                    return "int32_t"
-                case .uint64_t:
-                    return "uint64_t"
-                case .int64_t:
-                    return "int64_t"
-                case .float:
-                    return "float"
-                case .double:
-                    return "double"
-            }
+        switch self {
+            case .char:
+                return "char"
+            case .uint8_t:
+                return "uint8_t"
+            case .int8_t:
+                return "int8_t"
+            case .uint16_t:
+                return "uint16_t"
+            case .int16_t:
+                return "int16_t"
+            case .uint32_t:
+                return "uint32_t"
+            case .int32_t:
+                return "int32_t"
+            case .uint64_t:
+                return "uint64_t"
+            case .int64_t:
+                return "int64_t"
+            case .float:
+                return "float"
+            case .double:
+                return "double"
         }
     }
 
     public var size:Int {
-        get {
-            switch self {
-                case .char, .uint8_t, .int8_t:
-                    return 1
-                case .uint16_t, .int16_t:
-                    return 2
-                case .uint32_t, .int32_t:
-                    return 4
-                case .uint64_t, .int64_t:
-                    return 8
-                case .float:
-                    return 4
-                case .double:
-                    return 4
-            }
+        switch self {
+            case .char, .uint8_t, .int8_t:
+                return 1
+            case .uint16_t, .int16_t:
+                return 2
+            case .uint32_t, .int32_t:
+                return 4
+            case .uint64_t, .int64_t:
+                return 8
+            case .float:
+                return 4
+            case .double:
+                return 4
         }
     }
 }
 
 // MARK: -
 
-public extension DataScanner {
+extension DataScanner {
     func scan(type:FieldType, count:Int?) throws -> Any? {
         switch type {
             case .char:
@@ -274,86 +247,3 @@ public extension DataScanner {
 
 // MARK: -
 
-public class DefinitionsSuite {
-
-    public static var sharedSuite = DefinitionsSuite()
-
-    var cachedDefinitions:[UInt8:MessageDefinition] = [:]
-    var lock = NSLock()
-
-    public func preload() throws {
-
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
-
-        let bundle = NSBundle(identifier: "io.schwa.SwiftMavlink")!
-
-        let commonURLs = [
-            bundle.URLForResource("common", withExtension: "xml")!,
-            bundle.URLForResource("ardupilotmega", withExtension: "xml")!,
-        ]
-
-        for commonURL in commonURLs {
-            let xmlDocument = try NSXMLDocument(contentsOfURL: commonURL, options: 0)
-            let xpath = "/mavlink/messages/message"
-            guard let nodes = try xmlDocument.nodesForXPath(xpath) as? [NSXMLElement] else {
-                break
-            }
-            for messageNode in nodes {
-
-                guard let idString = messageNode.attributeForName("id")?.stringValue else {
-                    print("No ID")
-                    continue
-                }
-                guard let messageID = UInt8(idString) else {
-                    print("ID not integer")
-                    continue
-                }
-                let definition = try MessageDefinition(xml:messageNode)
-
-                if cachedDefinitions[messageID] != nil {
-                    print("Already an entry for \(definition.name)")
-                }
-
-                cachedDefinitions[messageID] = definition
-            }
-        }
-    }
-
-    public func messageDefinitionWithID(messageID:UInt8) throws -> MessageDefinition? {
-
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
-
-        if let definition = cachedDefinitions[messageID] {
-            return definition
-        }
-
-        let bundle = NSBundle(identifier: "io.schwa.SwiftMavlink")!
-
-        let commonURLs = [
-            bundle.URLForResource("common", withExtension: "xml")!,
-            bundle.URLForResource("ardupilotmega", withExtension: "xml")!,
-        ]
-
-        for commonURL in commonURLs {
-            let xmlDocument = try NSXMLDocument(contentsOfURL: commonURL, options: 0)
-            let xpath = "/mavlink/messages/message[@id=\(messageID)]"
-            guard let nodes = try xmlDocument.nodesForXPath(xpath) as? [NSXMLElement] else {
-                break
-            }
-            guard let messageNode = nodes.last else {
-                break
-            }
-            let definition = try MessageDefinition(xml:messageNode)
-            cachedDefinitions[messageID] = definition
-            return definition
-        }
-
-        return nil
-    }
-}

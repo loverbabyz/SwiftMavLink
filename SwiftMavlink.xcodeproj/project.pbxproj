@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		45761F031B4CBD4D00506E83 /* SwiftMavlink.h in Headers */ = {isa = PBXBuildFile; fileRef = 45761F021B4CBD4D00506E83 /* SwiftMavlink.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45761F1E1B4CBD9400506E83 /* MavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* MavLink.swift */; };
+		45761F1E1B4CBD9400506E83 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* Message.swift */; };
 		45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */; };
 		45761F2F1B4CBE8400506E83 /* MavLink+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */; };
-		45761F301B4CBE8400506E83 /* MavLink+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */; };
+		45761F301B4CBE8400506E83 /* Message+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A3FA531ACB0D97001EA503 /* Message+Utilities.swift */; };
 		459410361B792160007FFBA0 /* ardupilotmega.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410241B792160007FFBA0 /* ardupilotmega.xml */; };
 		459410371B792160007FFBA0 /* ASLUAV.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410251B792160007FFBA0 /* ASLUAV.xml */; };
 		459410381B792160007FFBA0 /* autoquad.xml in Resources */ = {isa = PBXBuildFile; fileRef = 459410261B792160007FFBA0 /* autoquad.xml */; };
@@ -24,8 +24,25 @@
 		4594103F1B792160007FFBA0 /* test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102D1B792160007FFBA0 /* test.xml */; };
 		459410401B792160007FFBA0 /* ualberta.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102E1B792160007FFBA0 /* ualberta.xml */; };
 		45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
-		45EF3ED11BAE117F004BB635 /* MavlinkDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3ED01BAE117F004BB635 /* MavlinkDefinitions.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF3ED11BAE117F004BB635 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3ED01BAE117F004BB635 /* Definitions.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF8F511BAE2DBD00A6F764 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F501BAE2DBD00A6F764 /* Utilities.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF8F531BAE2E9500A6F764 /* Message+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F521BAE2E9500A6F764 /* Message+Input.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF8F551BAE2EE000A6F764 /* DefinitionsSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F541BAE2EE000A6F764 /* DefinitionsSuite.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF8F571BAE2F1E00A6F764 /* Message+Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F561BAE2F1E00A6F764 /* Message+Output.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF8F5F1BAE37A700A6F764 /* SwiftMavlinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F5E1BAE37A700A6F764 /* SwiftMavlinkTests.swift */; };
+		45EF8F611BAE37A700A6F764 /* SwiftMavlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */; settings = {ASSET_TAGS = (); }; };
+		45EF8F671BAE38DC00A6F764 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45EF8F621BAE37A700A6F764 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45E907E01AC85F6F00541AF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45761EFF1B4CBD4D00506E83;
+			remoteInfo = SwiftMavlink;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		451991101B4CD3A400901BA2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -43,17 +60,19 @@
 		4594102C1B792160007FFBA0 /* slugs.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = slugs.xml; sourceTree = "<group>"; };
 		4594102D1B792160007FFBA0 /* test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
 		4594102E1B792160007FFBA0 /* ualberta.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ualberta.xml; sourceTree = "<group>"; };
-		45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+Convenience.swift"; path = "../MavlinkTest/Mavlink/MavLink+Convenience.swift"; sourceTree = "<group>"; };
-		45B9DE9E1B753460009FD963 /* SwiftIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftIO.framework; sourceTree = "<group>"; };
-		45B9DE9F1B753460009FD963 /* SwiftLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftLogging.framework; sourceTree = "<group>"; };
-		45B9DEA01B753460009FD963 /* SwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftUtilities.framework; sourceTree = "<group>"; };
-		45B9DEA21B753460009FD963 /* SwiftIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftIO.framework; sourceTree = "<group>"; };
-		45B9DEA31B753460009FD963 /* SwiftLogging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftLogging.framework; sourceTree = "<group>"; };
+		45A3FA531ACB0D97001EA503 /* Message+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+Utilities.swift"; path = "../MavlinkTest/Mavlink/Message+Utilities.swift"; sourceTree = "<group>"; };
 		45B9DEA41B753460009FD963 /* SwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftUtilities.framework; sourceTree = "<group>"; };
 		45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavlinkDataScanner.swift; path = ../MavlinkTest/Mavlink/MavlinkDataScanner.swift; sourceTree = "<group>"; };
 		45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MavLink+XML.swift"; path = "../MavlinkTest/Mavlink/MavLink+XML.swift"; sourceTree = "<group>"; };
-		45E1EFD91AC9B93500929F06 /* MavLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MavLink.swift; path = ../MavlinkTest/Mavlink/MavLink.swift; sourceTree = "<group>"; };
-		45EF3ED01BAE117F004BB635 /* MavlinkDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MavlinkDefinitions.swift; sourceTree = "<group>"; };
+		45E1EFD91AC9B93500929F06 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = ../MavlinkTest/Mavlink/Message.swift; sourceTree = "<group>"; };
+		45EF3ED01BAE117F004BB635 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
+		45EF8F501BAE2DBD00A6F764 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		45EF8F521BAE2E9500A6F764 /* Message+Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+Input.swift"; sourceTree = "<group>"; };
+		45EF8F541BAE2EE000A6F764 /* DefinitionsSuite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionsSuite.swift; sourceTree = "<group>"; };
+		45EF8F561BAE2F1E00A6F764 /* Message+Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+Output.swift"; sourceTree = "<group>"; };
+		45EF8F5C1BAE37A700A6F764 /* SwiftMavlinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMavlinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45EF8F5E1BAE37A700A6F764 /* SwiftMavlinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMavlinkTests.swift; sourceTree = "<group>"; };
+		45EF8F601BAE37A700A6F764 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45F181241AC9FF5F00815F08 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +82,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45EF8F591BAE37A700A6F764 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45EF8F611BAE37A700A6F764 /* SwiftMavlink.framework in Frameworks */,
+				45EF8F671BAE38DC00A6F764 /* SwiftUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,12 +108,15 @@
 		45761F011B4CBD4D00506E83 /* SwiftMavlink */ = {
 			isa = PBXGroup;
 			children = (
-				4594101A1B792160007FFBA0 /* message_definitions */,
 				45E1EFD81AC9B93500929F06 /* MavLink+XML.swift */,
-				45A3FA531ACB0D97001EA503 /* MavLink+Convenience.swift */,
-				45E1EFD91AC9B93500929F06 /* MavLink.swift */,
-				45EF3ED01BAE117F004BB635 /* MavlinkDefinitions.swift */,
+				45A3FA531ACB0D97001EA503 /* Message+Utilities.swift */,
+				45E1EFD91AC9B93500929F06 /* Message.swift */,
+				45EF8F521BAE2E9500A6F764 /* Message+Input.swift */,
+				45EF8F561BAE2F1E00A6F764 /* Message+Output.swift */,
+				45EF3ED01BAE117F004BB635 /* Definitions.swift */,
+				45EF8F541BAE2EE000A6F764 /* DefinitionsSuite.swift */,
 				45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */,
+				45EF8F501BAE2DBD00A6F764 /* Utilities.swift */,
 				45761F021B4CBD4D00506E83 /* SwiftMavlink.h */,
 				45761F041B4CBD4D00506E83 /* Info.plist */,
 			);
@@ -97,7 +128,8 @@
 			children = (
 				459410231B792160007FFBA0 /* v1.0 */,
 			);
-			path = message_definitions;
+			name = message_definitions;
+			path = SwiftMavlink/message_definitions;
 			sourceTree = "<group>";
 		};
 		459410231B792160007FFBA0 /* v1.0 */ = {
@@ -129,27 +161,14 @@
 		45B9DE9C1B753460009FD963 /* Build */ = {
 			isa = PBXGroup;
 			children = (
-				45B9DE9D1B753460009FD963 /* iOS */,
 				45B9DEA11B753460009FD963 /* Mac */,
 			);
 			path = Build;
 			sourceTree = "<group>";
 		};
-		45B9DE9D1B753460009FD963 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				45B9DE9E1B753460009FD963 /* SwiftIO.framework */,
-				45B9DE9F1B753460009FD963 /* SwiftLogging.framework */,
-				45B9DEA01B753460009FD963 /* SwiftUtilities.framework */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
 		45B9DEA11B753460009FD963 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				45B9DEA21B753460009FD963 /* SwiftIO.framework */,
-				45B9DEA31B753460009FD963 /* SwiftLogging.framework */,
 				45B9DEA41B753460009FD963 /* SwiftUtilities.framework */,
 			);
 			path = Mac;
@@ -160,7 +179,9 @@
 			children = (
 				45F181241AC9FF5F00815F08 /* README.markdown */,
 				45761F011B4CBD4D00506E83 /* SwiftMavlink */,
+				4594101A1B792160007FFBA0 /* message_definitions */,
 				45B9DE9B1B753460009FD963 /* Carthage */,
+				45EF8F5D1BAE37A700A6F764 /* SwiftMavlinkTests */,
 				451991151B4CD6C500901BA2 /* Frameworks */,
 				45E907E91AC85F6F00541AF9 /* Products */,
 			);
@@ -170,8 +191,18 @@
 			isa = PBXGroup;
 			children = (
 				45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */,
+				45EF8F5C1BAE37A700A6F764 /* SwiftMavlinkTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		45EF8F5D1BAE37A700A6F764 /* SwiftMavlinkTests */ = {
+			isa = PBXGroup;
+			children = (
+				45EF8F5E1BAE37A700A6F764 /* SwiftMavlinkTests.swift */,
+				45EF8F601BAE37A700A6F764 /* Info.plist */,
+			);
+			path = SwiftMavlinkTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +237,25 @@
 			productReference = 45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		45EF8F5B1BAE37A700A6F764 /* SwiftMavlinkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45EF8F641BAE37A700A6F764 /* Build configuration list for PBXNativeTarget "SwiftMavlinkTests" */;
+			buildPhases = (
+				45EF8F581BAE37A700A6F764 /* Sources */,
+				45EF8F591BAE37A700A6F764 /* Frameworks */,
+				45EF8F5A1BAE37A700A6F764 /* Resources */,
+				45B3B0BD1BAE5D34009FFBB5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45EF8F631BAE37A700A6F764 /* PBXTargetDependency */,
+			);
+			name = SwiftMavlinkTests;
+			productName = SwiftMavlinkTests;
+			productReference = 45EF8F5C1BAE37A700A6F764 /* SwiftMavlinkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,6 +267,9 @@
 				ORGANIZATIONNAME = schwa.io;
 				TargetAttributes = {
 					45761EFF1B4CBD4D00506E83 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					45EF8F5B1BAE37A700A6F764 = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
@@ -235,6 +288,7 @@
 			projectRoot = "";
 			targets = (
 				45761EFF1B4CBD4D00506E83 /* SwiftMavlink */,
+				45EF8F5B1BAE37A700A6F764 /* SwiftMavlinkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,22 +312,67 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45EF8F5A1BAE37A700A6F764 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45B3B0BD1BAE5D34009FFBB5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/SwiftUtilities.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exit 0\nSCRIPT_INPUT_FILE=\"$SCRIPT_INPUT_FILE_0\"\nBASENAME=`basename \"$SCRIPT_INPUT_FILE\"`\nif [ ! -f \"$TARGET_BUILD_DIR/$BASENAME\" ]; then\n    cp -R \"$SCRIPT_INPUT_FILE\" \"$TARGET_BUILD_DIR\"\nfi";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		45761EFB1B4CBD4D00506E83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45761F1E1B4CBD9400506E83 /* MavLink.swift in Sources */,
+				45EF8F511BAE2DBD00A6F764 /* Utilities.swift in Sources */,
+				45761F1E1B4CBD9400506E83 /* Message.swift in Sources */,
 				45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */,
-				45EF3ED11BAE117F004BB635 /* MavlinkDefinitions.swift in Sources */,
-				45761F301B4CBE8400506E83 /* MavLink+Convenience.swift in Sources */,
+				45EF3ED11BAE117F004BB635 /* Definitions.swift in Sources */,
+				45EF8F531BAE2E9500A6F764 /* Message+Input.swift in Sources */,
+				45761F301B4CBE8400506E83 /* Message+Utilities.swift in Sources */,
 				45761F2F1B4CBE8400506E83 /* MavLink+XML.swift in Sources */,
+				45EF8F571BAE2F1E00A6F764 /* Message+Output.swift in Sources */,
+				45EF8F551BAE2EE000A6F764 /* DefinitionsSuite.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45EF8F581BAE37A700A6F764 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45EF8F5F1BAE37A700A6F764 /* SwiftMavlinkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		45EF8F631BAE37A700A6F764 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45761EFF1B4CBD4D00506E83 /* SwiftMavlink */;
+			targetProxy = 45EF8F621BAE37A700A6F764 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		45761F171B4CBD4D00506E83 /* Debug */ = {
@@ -409,6 +508,38 @@
 			};
 			name = Release;
 		};
+		45EF8F651BAE37A700A6F764 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SwiftMavlinkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = io.schwa.SwiftMavlinkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		45EF8F661BAE37A700A6F764 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SwiftMavlinkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = io.schwa.SwiftMavlinkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -426,6 +557,15 @@
 			buildConfigurations = (
 				45E907ED1AC85F6F00541AF9 /* Debug */,
 				45E907EE1AC85F6F00541AF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45EF8F641BAE37A700A6F764 /* Build configuration list for PBXNativeTarget "SwiftMavlinkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45EF8F651BAE37A700A6F764 /* Debug */,
+				45EF8F661BAE37A700A6F764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

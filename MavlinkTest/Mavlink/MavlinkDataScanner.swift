@@ -17,7 +17,6 @@ public extension DataScanner {
 }
 
 public extension Message {
-
     static func messagesFromBuffer(buffer:UnsafeBufferPointer <Void>) throws -> [Message] {
         var messages:[Message] = []
         let scanner = DataScanner(buffer: buffer)
@@ -32,6 +31,4 @@ public extension Message {
         }
         return messages
     }
-
-
 }
