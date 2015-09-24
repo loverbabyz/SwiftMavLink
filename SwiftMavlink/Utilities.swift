@@ -15,7 +15,7 @@ extension DataScanner {
         }
         let scannedBuffer = UnsafeBufferPointer <Void> (start: buffer.baseAddress.advancedBy(current), count: count)
         current = current.advancedBy(count)
-        return DispatchData <Void> (buffer:scannedBuffer)
+        return DispatchData <Void> (buffer: scannedBuffer)
     }
 }
 
@@ -26,11 +26,11 @@ extension DispatchData {
 }
 
 extension DispatchData {
-    init <U> (_ value:[U]) {
+    init <U> (_ value: [U]) {
         let data = value.withUnsafeBufferPointer() {
             (buffer) in
             return dispatch_data_create(buffer.baseAddress, buffer.length, nil, nil)
         }
-        self.init(data:data)
+        self.init(data: data)
     }
 }

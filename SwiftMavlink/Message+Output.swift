@@ -10,7 +10,7 @@ import SwiftUtilities
 
 public extension Message {
 
-    public init(sequence: UInt8, systemID: UInt8, componentID: UInt8, definition:MessageDefinition, body: DispatchData <Void>) throws {
+    public init(sequence: UInt8, systemID: UInt8, componentID: UInt8, definition: MessageDefinition, body: DispatchData <Void>) throws {
         self.sequence = sequence
         self.systemID = systemID
         self.componentID = componentID
@@ -24,11 +24,11 @@ public extension Message {
 
         crc = try data.createMap() {
             (_, ptr) in
-            return try Message.computeCRC(ptr, seed:definition.seed)
+            return try Message.computeCRC(ptr, seed: definition.seed)
         }
     }
 
-    public init(sequence: UInt8, systemID: UInt8, componentID: UInt8, messageID: UInt8, values: [String:Any]) throws {
+    public init(sequence: UInt8, systemID: UInt8, componentID: UInt8, messageID: UInt8, values: [String: Any]) throws {
         guard let definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(messageID) else {
             throw Error.generic("No definition found for messageID: \(messageID)")
         }
@@ -48,7 +48,7 @@ public extension Message {
             throw Error.generic("Too much data")
         }
 
-        let body = DispatchData <Void> (start: data.bytes, count:data.length)
+        let body = DispatchData <Void> (start: data.bytes, count: data.length)
         try self.init(sequence: sequence, systemID: systemID, componentID: componentID, definition: definition, body: body)
     }
 }
@@ -57,7 +57,7 @@ public extension Message {
 
 private extension NSMutableData {
 
-    func append(field:FieldDefinition, value:Any) throws {
+    func append(field: FieldDefinition, value: Any) throws {
 
         // TODO: Endian!?
 
@@ -84,70 +84,70 @@ private extension NSMutableData {
                 }
             case .uint8_t:
                 if let count = field.count {
-                    try append(value as? [UInt8], count:count)
+                    try append(value as? [UInt8], count: count)
                 }
                 else {
                     try append(value as? UInt8)
                 }
             case .int8_t:
                 if let count = field.count {
-                    try append(value as? [Int8], count:count)
+                    try append(value as? [Int8], count: count)
                 }
                 else {
                     try append(value as? Int8)
                 }
             case .uint16_t:
                 if let count = field.count {
-                    try append(value as? [UInt16], count:count)
+                    try append(value as? [UInt16], count: count)
                 }
                 else {
                     try append(value as? UInt16)
                 }
             case .int16_t:
                 if let count = field.count {
-                    try append(value as? [Int16], count:count)
+                    try append(value as? [Int16], count: count)
                 }
                 else {
                     try append(value as? Int16)
                 }
             case .uint32_t:
                 if let count = field.count {
-                    try append(value as? [UInt32], count:count)
+                    try append(value as? [UInt32], count: count)
                 }
                 else {
                     try append(value as? UInt32)
                 }
             case .int32_t:
                 if let count = field.count {
-                    try append(value as? [Int32], count:count)
+                    try append(value as? [Int32], count: count)
                 }
                 else {
                     try append(value as? Int32)
                 }
             case .uint64_t:
                 if let count = field.count {
-                    try append(value as? [UInt64], count:count)
+                    try append(value as? [UInt64], count: count)
                 }
                 else {
                     try append(value as? UInt64)
                 }
             case .int64_t:
                 if let count = field.count {
-                    try append(value as? [Int64], count:count)
+                    try append(value as? [Int64], count: count)
                 }
                 else {
                     try append(value as? Int64)
                 }
             case .float:
                 if let count = field.count {
-                    try append(value as? [Float], count:count)
+                    try append(value as? [Float], count: count)
                 }
                 else {
                     try append(value as? Float)
                 }
             case .double:
                 if let count = field.count {
-                    try append(value as? [Double], count:count)
+                    try append(value as? [Double], count: count)
                 }
                 else {
                     try append(value as? Double)
@@ -155,7 +155,7 @@ private extension NSMutableData {
         }
     }
 
-    func append <T> (value:T?) throws {
+    func append <T> (value: T?) throws {
         guard var typedValue = value else {
             throw Error.generic("Could not convert \(value) to \(T.self)")
         }
@@ -165,7 +165,7 @@ private extension NSMutableData {
         }
     }
 
-    func append <T> (value:[T]?, count:Int) throws {
+    func append <T> (value: [T]?, count: Int) throws {
         guard let typedValue = value else {
             throw Error.generic("Could not convert \(value) to [\(T.self)]")
         }

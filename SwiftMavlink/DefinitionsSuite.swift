@@ -12,7 +12,7 @@ public class DefinitionsSuite {
 
     public static var sharedSuite = DefinitionsSuite()
 
-    var cachedDefinitions:[UInt8:MessageDefinition] = [:]
+    var cachedDefinitions: [UInt8: MessageDefinition] = [:]
     let lock = NSLock()
 
     func documents() throws -> [NSXMLDocument] {
@@ -47,7 +47,7 @@ public class DefinitionsSuite {
                     print("ID not integer")
                     continue
                 }
-                let definition = try MessageDefinition(xml:messageNode)
+                let definition = try MessageDefinition(xml: messageNode)
 
                 if cachedDefinitions[messageID] != nil {
                     print("Already an entry for \(definition.name)")
@@ -58,7 +58,7 @@ public class DefinitionsSuite {
         }
     }
 
-    public func messageDefinitionWithID(messageID:UInt8) throws -> MessageDefinition? {
+    public func messageDefinitionWithID(messageID: UInt8) throws -> MessageDefinition? {
 
         lock.lock()
         defer {
@@ -73,7 +73,7 @@ public class DefinitionsSuite {
             guard let messageNode = nodes.last else {
                 break
             }
-            let definition = try MessageDefinition(xml:messageNode)
+            let definition = try MessageDefinition(xml: messageNode)
             cachedDefinitions[messageID] = definition
             return definition
         }

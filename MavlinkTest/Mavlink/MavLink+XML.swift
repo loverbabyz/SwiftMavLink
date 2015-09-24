@@ -13,7 +13,7 @@ import SwiftUtilities
 // MARK: -
 
 public extension MessageDefinition {
-    init(xml element:NSXMLElement) throws {
+    init(xml element: NSXMLElement) throws {
 
         guard let string_id = element.attributeForName("id")?.stringValue, let id = Int(string_id) else {
             throw Error.generic("No id")
@@ -29,10 +29,10 @@ public extension MessageDefinition {
 
         let fields = try fieldNodes.enumerate().map() {
             (index, element) -> FieldDefinition in
-            return try FieldDefinition(xml:element, index:index)
+            return try FieldDefinition(xml: element, index: index)
         }
 
-        self.init(id:UInt8(id), name:name, fields:fields)
+        self.init(id: UInt8(id), name: name, fields: fields)
     }
 }
 
@@ -42,7 +42,7 @@ public extension FieldDefinition {
 
     static let expression = try! RegularExpression("([^\\[]+)(?:\\[(.+)\\])?")
 
-    static func fromXMLElement(element:NSXMLElement, index:Int) throws -> FieldDefinition {
+    static func fromXMLElement(element: NSXMLElement, index: Int) throws -> FieldDefinition {
         guard let typeString = element.attributeForName("type")?.stringValue else {
             throw Error.generic("Could not get type from field definition.")
         }
@@ -55,7 +55,7 @@ public extension FieldDefinition {
             throw Error.generic("Could not find field description (probably a bad regex).")
         }
 
-        let type = try FieldType(string:typeName)
+        let type = try FieldType(string: typeName)
 
         guard let fieldDescription = element.stringValue else {
             throw Error.generic("Could not get field description.")
@@ -65,12 +65,12 @@ public extension FieldDefinition {
             throw Error.generic("Could not get name from field definition.")
         }
 
-        let count:Int? = match.strings[2] != nil ? Int(match.strings[2]!) : nil
-        return FieldDefinition(index:index, type:type, count:count, name:name, fieldDescription:fieldDescription, offset:nil)
+        let count: Int? = match.strings[2] != nil ? Int(match.strings[2]!) : nil
+        return FieldDefinition(index: index, type: type, count: count, name: name, fieldDescription: fieldDescription, offset: nil)
 
     }
 
-    init(xml element:NSXMLElement, index:Int) throws {
-        self = try FieldDefinition.fromXMLElement(element, index:index)
+    init(xml element: NSXMLElement, index: Int) throws {
+        self = try FieldDefinition.fromXMLElement(element, index: index)
     }
 }

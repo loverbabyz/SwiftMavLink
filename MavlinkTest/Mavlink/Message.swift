@@ -44,7 +44,7 @@ public struct Message {
 
 extension Message: CustomStringConvertible {
     public var description: String {
-        var s = "Message(sequence:\(sequence), systemID:\(systemID), componentID:\(componentID), messageID:\(messageID), body: \(body.length) bytes"
+        var s = "Message(sequence: \(sequence), systemID: \(systemID), componentID: \(componentID), messageID: \(messageID), body: \(body.length) bytes"
         s +=  ", crc: 0x\(try! crc.toHex()))"
         return s
     }

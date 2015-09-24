@@ -13,7 +13,7 @@ import SwiftUtilities
 
 class SwiftMavlinkTests: XCTestCase {
     func testPing() {
-        let values: [String:Any] = [
+        let values: [String: Any] = [
             "time_usec": UInt64(1),
             "seq": UInt32(2),
             "target_system": UInt8(3),
@@ -28,7 +28,7 @@ class SwiftMavlinkTests: XCTestCase {
     }
 
     func testStatusText() {
-        let values:[String:Any] = [
+        let values: [String: Any] = [
             "severity": UInt8(1),
             "text": "Hello world",
         ]

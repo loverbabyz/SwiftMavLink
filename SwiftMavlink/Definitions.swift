@@ -14,7 +14,7 @@ public struct MessageDefinition {
     public let id: UInt8
     public let name: String
     public let fields: [FieldDefinition]
-    public let fieldsByName: [String:FieldDefinition]
+    public let fieldsByName: [String: FieldDefinition]
     public let seed: UInt8
 
     public init(id: UInt8, name: String, fields: [FieldDefinition]) {
@@ -28,7 +28,7 @@ public struct MessageDefinition {
             return field
         }
 
-        var fieldsByName: [String:FieldDefinition] = [:]
+        var fieldsByName: [String: FieldDefinition] = [:]
         for f in self.fields {
             fieldsByName[f.name] = f
         }
@@ -38,7 +38,7 @@ public struct MessageDefinition {
         seed = MessageDefinition.computeSeed(name: name, fields: self.fields)
     }
 
-    static func computeSeed(name name:String, fields:[FieldDefinition]) -> UInt8 {
+    static func computeSeed(name name: String, fields: [FieldDefinition]) -> UInt8 {
         var crc = SwiftUtilities.CRC16()
         crc.accumulate(name + " ")
         for f in fields {
@@ -54,32 +54,32 @@ public struct MessageDefinition {
 
 extension MessageDefinition: CustomStringConvertible {
     public var description: String {
-        return "MessageDefinition(id:\(id), name:\(name), fields:\(fields), seed:\(seed))"
+        return "MessageDefinition(id: \(id), name: \(name), fields: \(fields), seed: \(seed))"
     }
 }
 
 // MARK: -
 
 public struct FieldDefinition {
-    public let index:Int
-    public let type:FieldType
-    public let count:Int?
-    public let name:String
-    public let fieldDescription:String
-    public let offset:Int?
+    public let index: Int
+    public let type: FieldType
+    public let count: Int?
+    public let name: String
+    public let fieldDescription: String
+    public let offset: Int?
 }
 
 extension FieldDefinition: Equatable {
 }
 
-public func ==(lhs:FieldDefinition, rhs:FieldDefinition) -> Bool {
+public func ==(lhs: FieldDefinition, rhs: FieldDefinition) -> Bool {
     return lhs.index == rhs.index && lhs.type.size == rhs.type.size
 }
 
 extension FieldDefinition: Comparable {
 }
 
-public func <(lhs:FieldDefinition, rhs:FieldDefinition) -> Bool {
+public func <(lhs: FieldDefinition, rhs: FieldDefinition) -> Bool {
     if lhs.type.size > rhs.type.size {
         return true
     }
@@ -96,7 +96,7 @@ extension FieldDefinition: CustomStringConvertible, CustomDebugStringConvertible
         return name
     }
     public var debugDescription: String {
-        return "FieldDefinition(index:\(index), type:\(type), count:\(count), name:\(name), offset:\(offset))"
+        return "FieldDefinition(index: \(index), type: \(type), count: \(count), name: \(name), offset: \(offset))"
     }
 }
 
@@ -128,7 +128,7 @@ public enum FieldType {
     case float
     case double
 
-    public init(string:String) throws {
+    public init(string: String) throws {
         switch string {
             case "char":
                 self = .char
@@ -157,7 +157,7 @@ public enum FieldType {
         }
     }
 
-    public var name:String {
+    public var name: String {
         switch self {
             case .char:
                 return "char"
@@ -184,7 +184,7 @@ public enum FieldType {
         }
     }
 
-    public var size:Int {
+    public var size: Int {
         switch self {
             case .char, .uint8_t, .int8_t:
                 return 1
@@ -205,11 +205,11 @@ public enum FieldType {
 // MARK: -
 
 extension DataScanner {
-    func scan(type:FieldType, count:Int?) throws -> Any? {
+    func scan(type: FieldType, count: Int?) throws -> Any? {
         switch type {
             case .char:
                 let count = count ?? 1
-                let string:String? = try scanString(count)
+                let string: String? = try scanString(count)
                 return string
             case .uint8_t:
                 assert(count == nil)

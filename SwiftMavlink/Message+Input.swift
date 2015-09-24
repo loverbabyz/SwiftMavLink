@@ -10,7 +10,7 @@ import SwiftUtilities
 
 public extension Message {
     
-    public init(buffer:UnsafeBufferPointer <Void>, skipCRC:Bool = false) throws {
+    public init(buffer: UnsafeBufferPointer <Void>, skipCRC: Bool = false) throws {
         
         guard buffer.count >= 8 else {
             throw Error.generic("Buffer too small")
@@ -24,7 +24,7 @@ public extension Message {
             throw Error.generic("No header found.")
         }
 
-        guard let bodyLength:UInt8 = try scanner.scan() else {
+        guard let bodyLength: UInt8 = try scanner.scan() else {
             throw Error.generic("No body length found.")
         }
 
@@ -41,7 +41,7 @@ public extension Message {
         definition = try DefinitionsSuite.sharedSuite.messageDefinitionWithID(messageID)
 
         if let definition = definition {
-            let computedCRC = try Message.computeCRC(buffer, seed:definition.seed)
+            let computedCRC = try Message.computeCRC(buffer, seed: definition.seed)
             if computedCRC != crc {
                 if skipCRC == false {
                     throw Error.generic("Computed CRC (\(try? computedCRC.toHex())) doesn't agree with (\(try? crc.toHex()))")
@@ -50,7 +50,7 @@ public extension Message {
         }
     }
 
-    public var values: [String:Any] {
+    public var values: [String: Any] {
         do {
             return try readValues()
         }
@@ -59,18 +59,18 @@ public extension Message {
         }
     }
 
-    func readValues() throws -> [String:Any] {
+    func readValues() throws -> [String: Any] {
         guard let definition = definition else {
             throw Error.generic("No definition found for message id: \(messageID)")
         }
 
-        var values: [String:Any] = [:]
+        var values: [String: Any] = [:]
 
         try body.createMap() {
             (_, buffer) in
             let bodyScanner = DataScanner(buffer: buffer)
             for field in definition.fields {
-                let value:Any? = try bodyScanner.scan(field.type, count:field.count)
+                let value: Any? = try bodyScanner.scan(field.type, count: field.count)
                 values[field.name] = value
             }
         }
@@ -85,7 +85,7 @@ public extension Message {
         }
 
         let length = buffer[1]
-        let subBuffer = UnsafeBufferPointer <UInt8> (start:buffer.baseAddress.advancedBy(1), count:Int(length) + 5)
+        let subBuffer = UnsafeBufferPointer <UInt8> (start: buffer.baseAddress.advancedBy(1), count: Int(length) + 5)
         var crc = CRC16()
         crc.accumulate(subBuffer)
         crc.accumulate([seed])

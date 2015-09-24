@@ -16,11 +16,11 @@ import Foundation
 //matching[kIOSerialBSDTypeKey] = kIOSerialBSDRS232Type
 //matching[kIOTTYBaseNameKey] = "usbserial-DN009LZP"
 //
-//var iterator:io_iterator_t = 0
-//var object:IOObject?
+//var iterator: io_iterator_t = 0
+//var object: IOObject?
 //var result = IOServiceGetMatchingServices(kIOMasterPortDefault, matching, &iterator)
 //while true {
-//    object = IOObject(object:IOIteratorNext(iterator))
+//    object = IOObject(object: IOIteratorNext(iterator))
 //    if object == nil {
 //        break
 //    }

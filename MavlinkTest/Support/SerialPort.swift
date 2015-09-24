@@ -12,12 +12,12 @@ import Darwin
 
 class SerialPort {
 
-    let ioObject:IOObject
-    var fileDescriptor:Int32 = -1
-    var channel:dispatch_io_t!
-    var buffer:dispatch_data_t!
+    let ioObject: IOObject
+    var fileDescriptor: Int32 = -1
+    var channel: dispatch_io_t!
+    var buffer: dispatch_data_t!
 
-    init(ioObject:IOObject) {
+    init(ioObject: IOObject) {
         self.ioObject = ioObject
     }
 
@@ -68,7 +68,7 @@ class SerialPort {
 
 
         dispatch_io_read(channel, 0, 16, dispatch_get_main_queue()) {
-            [unowned self] (done:Bool, data:dispatch_data_t!, error:Int32) -> Void in
+            [unowned self] (done: Bool, data: dispatch_data_t!, error: Int32) -> Void in
 
 //            print(done)
 //            print(data)

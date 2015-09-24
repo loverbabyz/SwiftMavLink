@@ -10,9 +10,9 @@ import Foundation
 
 class IOObject {
 
-    let object:io_object_t
+    let object: io_object_t
 
-    init?(object:io_object_t) {
+    init?(object: io_object_t) {
         self.object = object
         if object == 0 {
             return nil
@@ -25,21 +25,21 @@ class IOObject {
         }
     }
 
-    var className:String {
+    var className: String {
         get {
             return IOObjectCopyClass(object).takeRetainedValue() as String
         }
     }
 
-    var bundleID:String {
+    var bundleID: String {
         get {
             return IOObjectCopyBundleIdentifierForClass(className).takeRetainedValue() as String
         }
     }
 
-    var properties:NSDictionary! {
+    var properties: NSDictionary! {
         get {
-            var properties:Unmanaged<CFMutableDictionary>?
+            var properties: Unmanaged<CFMutableDictionary>?
             let result = IORegistryEntryCreateCFProperties(object, &properties, nil, IOOptionBits())
             if let properties = properties?.takeRetainedValue() where result == 0 {
                 return properties
