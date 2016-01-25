@@ -24,13 +24,13 @@
 		4594103F1B792160007FFBA0 /* test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102D1B792160007FFBA0 /* test.xml */; };
 		459410401B792160007FFBA0 /* ualberta.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4594102E1B792160007FFBA0 /* ualberta.xml */; };
 		45B9DEA81B75347A009FD963 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
-		45EF3ED11BAE117F004BB635 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3ED01BAE117F004BB635 /* Definitions.swift */; settings = {ASSET_TAGS = (); }; };
-		45EF8F511BAE2DBD00A6F764 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F501BAE2DBD00A6F764 /* Utilities.swift */; settings = {ASSET_TAGS = (); }; };
-		45EF8F531BAE2E9500A6F764 /* Message+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F521BAE2E9500A6F764 /* Message+Input.swift */; settings = {ASSET_TAGS = (); }; };
-		45EF8F551BAE2EE000A6F764 /* DefinitionsSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F541BAE2EE000A6F764 /* DefinitionsSuite.swift */; settings = {ASSET_TAGS = (); }; };
-		45EF8F571BAE2F1E00A6F764 /* Message+Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F561BAE2F1E00A6F764 /* Message+Output.swift */; settings = {ASSET_TAGS = (); }; };
+		45EF3ED11BAE117F004BB635 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3ED01BAE117F004BB635 /* Definitions.swift */; };
+		45EF8F511BAE2DBD00A6F764 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F501BAE2DBD00A6F764 /* Utilities.swift */; };
+		45EF8F531BAE2E9500A6F764 /* Message+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F521BAE2E9500A6F764 /* Message+Input.swift */; };
+		45EF8F551BAE2EE000A6F764 /* DefinitionsSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F541BAE2EE000A6F764 /* DefinitionsSuite.swift */; };
+		45EF8F571BAE2F1E00A6F764 /* Message+Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F561BAE2F1E00A6F764 /* Message+Output.swift */; };
 		45EF8F5F1BAE37A700A6F764 /* SwiftMavlinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EF8F5E1BAE37A700A6F764 /* SwiftMavlinkTests.swift */; };
-		45EF8F611BAE37A700A6F764 /* SwiftMavlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */; settings = {ASSET_TAGS = (); }; };
+		45EF8F611BAE37A700A6F764 /* SwiftMavlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45761F001B4CBD4D00506E83 /* SwiftMavlink.framework */; };
 		45EF8F671BAE38DC00A6F764 /* SwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; };
 /* End PBXBuildFile section */
 
@@ -178,9 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				45F181241AC9FF5F00815F08 /* README.markdown */,
+				45B9DE9B1B753460009FD963 /* Carthage */,
 				45761F011B4CBD4D00506E83 /* SwiftMavlink */,
 				4594101A1B792160007FFBA0 /* message_definitions */,
-				45B9DE9B1B753460009FD963 /* Carthage */,
 				45EF8F5D1BAE37A700A6F764 /* SwiftMavlinkTests */,
 				451991151B4CD6C500901BA2 /* Frameworks */,
 				45E907E91AC85F6F00541AF9 /* Products */,

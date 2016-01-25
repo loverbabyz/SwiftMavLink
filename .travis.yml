@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode7.2
+before_install:
+- brew update > /dev/null
+- brew install carthage > /dev/null
+before_script:
+- carthage bootstrap
+script:
+- xctool -project "SwiftMavlink.xcodeproj" -scheme "SwiftMavlink" build
+
