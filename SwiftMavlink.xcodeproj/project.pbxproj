@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45646BC61C55E06B0042E2C0 /* SwiftUtilities.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 45B9DEA41B753460009FD963 /* SwiftUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45761F031B4CBD4D00506E83 /* SwiftMavlink.h in Headers */ = {isa = PBXBuildFile; fileRef = 45761F021B4CBD4D00506E83 /* SwiftMavlink.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45761F1E1B4CBD9400506E83 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E1EFD91AC9B93500929F06 /* Message.swift */; };
 		45761F1F1B4CBD9400506E83 /* MavlinkDataScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CE0EC01AE827DA0066EC43 /* MavlinkDataScanner.swift */; };
@@ -43,6 +44,20 @@
 			remoteInfo = SwiftMavlink;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		45646BC51C55E0680042E2C0 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				45646BC61C55E06B0042E2C0 /* SwiftUtilities.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		451991101B4CD3A400901BA2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -244,7 +259,7 @@
 				45EF8F581BAE37A700A6F764 /* Sources */,
 				45EF8F591BAE37A700A6F764 /* Frameworks */,
 				45EF8F5A1BAE37A700A6F764 /* Resources */,
-				45B3B0BD1BAE5D34009FFBB5 /* ShellScript */,
+				45646BC51C55E0680042E2C0 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -320,24 +335,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		45B3B0BD1BAE5D34009FFBB5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/Mac/SwiftUtilities.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "exit 0\nSCRIPT_INPUT_FILE=\"$SCRIPT_INPUT_FILE_0\"\nBASENAME=`basename \"$SCRIPT_INPUT_FILE\"`\nif [ ! -f \"$TARGET_BUILD_DIR/$BASENAME\" ]; then\n    cp -R \"$SCRIPT_INPUT_FILE\" \"$TARGET_BUILD_DIR\"\nfi";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		45761EFB1B4CBD4D00506E83 /* Sources */ = {
